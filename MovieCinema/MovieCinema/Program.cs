@@ -10,6 +10,7 @@ namespace MovieCinema
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }
