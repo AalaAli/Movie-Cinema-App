@@ -10,7 +10,8 @@ namespace MovieCinema
     {
         static void Main(string[] args)
         {
-            
+            T1=new Ticket();
+            TP1=new TicketProxy(T1);
         }
     }
 }
