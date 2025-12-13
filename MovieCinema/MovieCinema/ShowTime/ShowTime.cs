@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieCinema
 {
-    internal class ShowTime
+    public class ShowTime
     {
     }
 }

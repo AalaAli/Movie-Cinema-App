@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieCinema.Genr;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,17 @@ namespace MovieCinema
             M1.DisplayMovieInfo();
             Movie M2=M1.CloneMovie();
             M2.DisplayMovieInfo();
+
+            var G = new GenreComponent(1, "Action");
+            var G1=new GenreGroup(4,"Popular Genre: ");
+            G1.AddGenre(G);
+            G1.AddGenre(new GenreComponent(2,"Comedy"));
+            G1.AddGenre(new GenreComponent(3, "Drama"));
+            G1.AddGenre(new GenreComponent(5, "Horror"));
+            G.DisplayGenre();
+            G1.DisplayGenre();
+
+
         }
     }
 }
