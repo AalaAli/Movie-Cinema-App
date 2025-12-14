@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieCinema.Genr
+namespace MovieCinema.Genres
 {
-    public class GenreComponent
+    public abstract class GenreComponent
     {
         int GenreId;
-        string GenreName;
+       public string GenreName;
 
         public GenreComponent(int GnId, string GnName)
         {
@@ -18,8 +18,9 @@ namespace MovieCinema.Genr
         }
         public void DisplayGenre()
         {
-            Console.WriteLine($"GenreName: {GenreName}");
         }
+        public abstract bool IsLeaf();
+
     }
 
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieCinema.Genr
+namespace MovieCinema.Genres
 {
     public class GenreGroup:GenreComponent
     {
@@ -28,6 +28,7 @@ namespace MovieCinema.Genr
                 genre.DisplayGenre();
             }
         }
-
+        public override bool IsLeaf() => false;
+        
     }
 }
