@@ -1,5 +1,5 @@
 ﻿using MovieCinema.Actors;
-using MovieCinema.Genr;
+using MovieCinema.Genres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace MovieCinema.Movies
         internal int Duration; // in minutes
         internal string PosterPath;
         internal float Rating;
-        internal List<Genre> Genres;
+        internal List<GenreComponent> Genres;
         internal List<Actor> Actors;
         public Movie() { }
         public  Movie(int MvId, string Tit, string Desc, int Dur, string PstPth, float Rt)
@@ -27,11 +27,11 @@ namespace MovieCinema.Movies
             Duration = Dur; 
             PosterPath = PstPth;
             Rating = Rt;
-            Genres = new List<Genre>();
+            Genres = new List<GenreComponent>();
             Actors = new List<Actor>();
 
         }
-        public void AddGenre(Genre Genre)
+        public void AddGenre(GenreComponent Genre)
         {
             if(Genre.IsLeaf())
                 Genres.Add(Genre);
@@ -44,7 +44,7 @@ namespace MovieCinema.Movies
         {
             Genres.Remove(Genre);
         }
-        public List<Genre> GetGenres()
+        public List<GenreComponent> GetGenres()
         {
             return Genres;
         }
@@ -87,6 +87,11 @@ namespace MovieCinema.Movies
         public void DisplayMovieInfo()
         {
             Console.WriteLine($"MovieId: {MovieId} Title: {Title} Description: {Description} Duration: {Duration} PosterPath: {PosterPath} Rating: {Rating}");
+            foreach(var genre in Genres)
+            {
+                Console.WriteLine($"Genre: {genre.GenreName}");
+            }
+
         }
     }
    

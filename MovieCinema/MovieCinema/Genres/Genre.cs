@@ -11,7 +11,7 @@ namespace MovieCinema.Genres
         public Genre(int GnId, string GnName) : base(GnId, GnName)
         {
         }
-        public  void DisplayGenres(string GenreName)
+        public override void DisplayGenre()
         {
             Console.WriteLine($"GenreName: {GenreName}");
         }

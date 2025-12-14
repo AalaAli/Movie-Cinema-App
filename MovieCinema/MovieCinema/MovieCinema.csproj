@@ -57,13 +57,24 @@
     <Compile Include="Movies\SearchStrategy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ActorRepository.cs" />
+    <Compile Include="Repositories\CinemaRepository.cs" />
+    <Compile Include="Repositories\GenreRepository.cs" />
+    <Compile Include="Repositories\HallRepository.cs" />
+    <Compile Include="Repositories\MovieRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\SeatRepository.cs" />
+    <Compile Include="Repositories\ShowTimeRepository.cs" />
+    <Compile Include="Repositories\TicketRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Seat\Seat.cs" />
     <Compile Include="ShowTime\ShowTime.cs" />
     <Compile Include="Ticket\Ticket.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="Users\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

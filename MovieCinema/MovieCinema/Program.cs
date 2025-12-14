@@ -1,11 +1,12 @@
-﻿using MovieCinema.Genr;
+﻿using MovieCinema.Genres;
 using MovieCinema.Movies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.SqlClient;
+using MovieCinema.Repositories;
 namespace MovieCinema
 {
     internal class Program
@@ -30,27 +31,24 @@ namespace MovieCinema
             G1.AddGenre(new GenreComponent(5, "Horror"));
             G.DisplayGenre();
             G1.DisplayGenre();*/
-            Movie m1=new Movie(1,"Inception","cool movie", 120,"C:\\", 4.5f);
-            Movie m2=new Movie(2,"The Dark Knight","great movie", 150,"C:\\", 4.8f);
-            Movie m3=new Movie(3,"Interstellar","amazing movie", 180,"C:\\", 4.7f);
-            m1.AddGenre(new Genre(1,"Action"));
-            m2.AddGenre(new Genre(1,"Action"));//add component
-            m3.AddGenre(new Genre ( 2, "Sci-Fi"));
+          
+            string ConnectionString="server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
 
-            List<Movie> movies = new List<Movie>();
-            movies.Add(m1);
-            movies.Add(m2);
-            movies.Add(m3);
+            IRepository<User> UR = new UserRepository(ConnectionString);
+            User u1 = new User(2, "Aala", "0000", "aala@gmail.com", "0915963905");
+            // UR.Add(u1);
+            //UR.Delete(2);
+            // User u2 = new User(3, "Malak", "0000", "malak@gmail.com", "0915963905");
+            //UR.Update(u2);
+            // List<User> users = UR.GetAll();
+            /*  foreach (User user in users)
+              {
+                  Console.WriteLine($"ID: {user.GetUserId()}, Name: {user.GetUserName()}, Email: {user.GetEmail()}, Phone: {user.GetPhone()}");
+              }*/
 
-            SearchStrategy s = new SearchByTitleStrategy();
+            User u = UR.GetById(3);
+            Console.WriteLine($"ID: {u.GetUserId()}, Name: {u.GetUserName()}, Email: {u.GetEmail()}, Phone: {u.GetPhone()}");
 
-            MovieSearchContext m = new MovieSearchContext(s);
-          List<Movie> result = m.Search("The Dark Knight", movies);
-
-            foreach (Movie movie in result)
-            {
-                movie.DisplayMovieInfo();
-            }
-            }
+        }
     }
 }

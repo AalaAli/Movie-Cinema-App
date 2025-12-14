@@ -9,6 +9,7 @@ namespace MovieCinema.Genres
     public class GenreGroup:GenreComponent
     {
         private List<GenreComponent> _genres = new List<GenreComponent>();
+        public GenreGroup() { }
         public GenreGroup(int GnId, string GnName) : base(GnId,GnName)
         {
         }
@@ -20,7 +21,7 @@ namespace MovieCinema.Genres
         {
             _genres.Remove(genre);
         }
-        public void DisplayGenre()
+        public override void DisplayGenre()
         {
             Console.WriteLine("Genre Group:");
             foreach (var genre in _genres)
