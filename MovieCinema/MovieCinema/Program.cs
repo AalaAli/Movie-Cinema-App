@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using MovieCinema.Repositories;
+using MovieCinema.Actors;
 namespace MovieCinema
 {
     internal class Program
@@ -34,8 +35,21 @@ namespace MovieCinema
           
             string ConnectionString="server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
 
-            IRepository<User> UR = new UserRepository(ConnectionString);
-            User u1 = new User(2, "Aala", "0000", "aala@gmail.com", "0915963905");
+            IRepository<Actor> AR = new ActorRepository(ConnectionString);
+            Actor a= new Actor(1, "Leonardo DiCaprio", "An American actor and producer.", new DateTime(1974, 11, 11));
+/*            Actor actor = AR.GetById(2);
+            Console.WriteLine($"ID: {actor.GetActorId()}, Name: {actor.GetActorName()}, Bio: {actor.GetBio()}, Birth Date: {actor.GetBirthDate().ToShortDateString()}");
+            *//* List<Actor> actors = AR.GetAll();*//*
+             foreach (Actor actor in actors)
+             {
+                 Console.WriteLine($"ID: {actor.GetActorId()}, Name: {actor.GetActorName()}, Bio: {actor.GetBio()}, Birth Date: {actor.GetBirthDate().ToShortDateString()}");
+             }
+ */
+
+            // AR.Update(new Actor(2, "Leonardo", "An American actor and environmental activist.", new DateTime(1985, 11, 11)));
+            //AR.Add(a);
+            //AR.Delete(1);
+            //User u1 = new User(2, "Aala", "0000", "aala@gmail.com", "0915963905");
             // UR.Add(u1);
             //UR.Delete(2);
             // User u2 = new User(3, "Malak", "0000", "malak@gmail.com", "0915963905");
@@ -46,8 +60,8 @@ namespace MovieCinema
                   Console.WriteLine($"ID: {user.GetUserId()}, Name: {user.GetUserName()}, Email: {user.GetEmail()}, Phone: {user.GetPhone()}");
               }*/
 
-            User u = UR.GetById(3);
-            Console.WriteLine($"ID: {u.GetUserId()}, Name: {u.GetUserName()}, Email: {u.GetEmail()}, Phone: {u.GetPhone()}");
+            //User u = UR.GetById(3);
+            //Console.WriteLine($"ID: {u.GetUserId()}, Name: {u.GetUserName()}, Email: {u.GetEmail()}, Phone: {u.GetPhone()}");
 
         }
     }

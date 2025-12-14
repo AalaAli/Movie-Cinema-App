@@ -94,12 +94,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Users WHERE UserId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            int userId = reader.GetInt32(0);
-                string userName = reader.GetString(1);
-                string email = reader.GetString(2);
-                string passwordHash = reader.GetString(3);
-                string phone = reader.GetString(4);
-                User user = new User(userId, userName, passwordHash, email, phone);
+                User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
             
             con.Close();
             return user;

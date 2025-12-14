@@ -9,14 +9,14 @@ namespace MovieCinema.Actors
     public class Actor
     {
         int ActorId;
-       public string ActorName;
+        public string ActorName;
         string Bio;
         DateTime BirthDate;
-        Actor()
+        public Actor()
         {
 
         }
-        Actor(int actorid,string actorname, string bio,DateTime birthdate)
+        public Actor(int actorid,string actorname, string bio,DateTime birthdate)
         {
             ActorId = actorid;
             ActorName = actorname;
@@ -24,6 +24,11 @@ namespace MovieCinema.Actors
             BirthDate= birthdate;
 
         }
+       public int GetActorId() => ActorId;
+        public string GetActorName() => ActorName;
+        public string GetBio() => Bio;
+        public DateTime GetBirthDate() => BirthDate;
+
 
     }
 }
