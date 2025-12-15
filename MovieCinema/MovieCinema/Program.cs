@@ -35,12 +35,21 @@ namespace MovieCinema
 
             string ConnectionString="server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
 
-           // IRepository<Actor> AR = new ActorRepository(ConnectionString);
-             IRepository<GenreComponent> Gn = new GenreRepository(ConnectionString);
-            GenreComponent genre = new Genre(1,"Action");
-            GenreComponent g =Gn.GetById(2);
+            IRepository<Hall> H = new HallRepository(ConnectionString);
+          
+            Hall hall= H.GetById(2);
+            Console.WriteLine($"HallId:{hall.GetHallId()} HallName:{hall.GetHallName()} CinemaId:{hall.GetCinemaId()} Seatcount:{hall.GetSeatCount()}");
+            
+            //H.Add(new Hall(1, "H1", 2, 50));
 
-       //     Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
+//            H.Update(new Hall(2, "H2", 2, 90));
+
+            // IRepository<Actor> AR = new ActorRepository(ConnectionString);
+            /*  IRepository<GenreComponent> Gn = new GenreRepository(ConnectionString);
+             GenreComponent genre = new Genre(1,"Action");
+             GenreComponent g =Gn.GetById(2);*/
+
+            //     Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
 
             //   Gn.Add(genre);
             // Gn.Update(new Genre(2, "Drama"));

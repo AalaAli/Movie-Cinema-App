@@ -17,6 +17,7 @@ namespace MovieCinema.Repositories
 
         void IRepository<Ticket>.Add(Ticket entity)
         {
+
         }
         void IRepository<Ticket>.Delete(int id)
         {
