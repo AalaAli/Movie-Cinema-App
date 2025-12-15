@@ -30,6 +30,7 @@ namespace MovieCinema.Genres
             }
         }
         public override bool IsLeaf() => false;
-        
+        public override int GetGenreId() => GenreId;
+        public override string GetGenreName() => GenreName;
     }
 }

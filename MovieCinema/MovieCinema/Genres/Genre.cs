@@ -16,5 +16,7 @@ namespace MovieCinema.Genres
             Console.WriteLine($"GenreName: {GenreName}");
         }
         public override bool IsLeaf() => true;
+        public override int GetGenreId() => GenreId;
+        public override string GetGenreName() => GenreName;
     }
 }
