@@ -1,5 +1,6 @@
 ﻿using MovieCinema.Actors;
 using MovieCinema.Genres;
+using MovieCinema.SqlConectionSingleton;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,17 +12,18 @@ namespace MovieCinema.Repositories
 {
     internal class GenreRepository:IRepository<GenreComponent>
     {
-        string connectionString;
+        SqlConnectionSingleton conn;
+        SqlConnection con;
         public GenreRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            this.conn = SqlConnectionSingleton.GetInstance();
+            con = SqlConnectionSingleton.GetSingleConnetion();
+            con.ConnectionString = connectionString;
         }
         // Methods for CRUD operations on Actor entities would go here
 
         void IRepository<GenreComponent>.Add(GenreComponent entity)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
 
@@ -34,8 +36,6 @@ namespace MovieCinema.Repositories
         }
         void IRepository<GenreComponent>.Delete(int id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand($"DELETE FROM Genres WHERE GenreId={id}", con);
@@ -45,8 +45,6 @@ namespace MovieCinema.Repositories
         }
         void IRepository<GenreComponent>.Update(GenreComponent entity)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
 
@@ -56,10 +54,8 @@ namespace MovieCinema.Repositories
             con.Close();
             Console.WriteLine($"Genre {entity.GetGenreId()} was Updated Successfully");
         }
-        List<GenreComponent> IRepository<GenreComponent>.GetAll()
+        IEnumerable<GenreComponent> IRepository<GenreComponent>.GetAll()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand("SELECT * FROM Genres", con);
@@ -76,8 +72,6 @@ namespace MovieCinema.Repositories
         }
         GenreComponent IRepository<GenreComponent>.GetById(int id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Genres WHERE GenreId={id}", con);

@@ -36,13 +36,15 @@ namespace MovieCinema
             string ConnectionString="server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
 
             IRepository<Hall> H = new HallRepository(ConnectionString);
-          
-            Hall hall= H.GetById(2);
-            Console.WriteLine($"HallId:{hall.GetHallId()} HallName:{hall.GetHallName()} CinemaId:{hall.GetCinemaId()} Seatcount:{hall.GetSeatCount()}");
-            
-            //H.Add(new Hall(1, "H1", 2, 50));
+            IRepository<Movie> M = new MovieRepository(ConnectionString);
+            Movie m = new Movie(4,"The Dark Night"," A thriller",2010,148,"/path/to/poster.jpg",8.8f,2);
+            M.Update(m);
+            //Hall hall= H.GetById(2);
+            // Console.WriteLine($"HallId:{hall.GetHallId()} HallName:{hall.GetHallName()} CinemaId:{hall.GetCinemaId()} Seatcount:{hall.GetSeatCount()}");
 
-//            H.Update(new Hall(2, "H2", 2, 90));
+            /*            H.Delete(5);
+            */
+            //        H.Update(new Hall(2, "H2", 2, 10));
 
             // IRepository<Actor> AR = new ActorRepository(ConnectionString);
             /*  IRepository<GenreComponent> Gn = new GenreRepository(ConnectionString);
@@ -59,15 +61,15 @@ namespace MovieCinema
                             Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
                         }*/
             //Gn.Delete(1);
-            //   Actor a= new Actor(1, "Leonardo DiCaprio", "An American actor and producer.", new DateTime(1974, 11, 11));
-            /*            Actor actor = AR.GetById(2);
-                        Console.WriteLine($"ID: {actor.GetActorId()}, Name: {actor.GetActorName()}, Bio: {actor.GetBio()}, Birth Date: {actor.GetBirthDate().ToShortDateString()}");
-                        *//* List<Actor> actors = AR.GetAll();*//*
-                         foreach (Actor actor in actors)
-                         {
-                             Console.WriteLine($"ID: {actor.GetActorId()}, Name: {actor.GetActorName()}, Bio: {actor.GetBio()}, Birth Date: {actor.GetBirthDate().ToShortDateString()}");
-                         }
+            /*            IRepository<Actor>AR= new ActorRepository(ConnectionString);
+                           Actor a= new Actor(1, "Leonardo DiCaprio", "An American actor and producer.", new DateTime(1974, 11, 11));
+                        AR.Add(a);
+                        Actor actor = AR.GetById(2);
+                         Console.WriteLine($"ID: {actor.GetActorId()}, Name: {actor.GetActorName()}, Bio: {actor.GetBio()}, Birth Date: {actor.GetBirthDate().ToShortDateString()}");
+                                    List<Actor> actors = AR.GetAll();
              */
+
+
 
             // AR.Update(new Actor(2, "Leonardo", "An American actor and environmental activist.", new DateTime(1985, 11, 11)));
             //AR.Add(a);

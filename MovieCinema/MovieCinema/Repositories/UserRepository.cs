@@ -1,25 +1,27 @@
-﻿using System;
+﻿using MovieCinema.SqlConectionSingleton;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
 
 namespace MovieCinema.Repositories
 {
     internal class UserRepository:IRepository<User>
     {
-        string connectionString;
+        SqlConnectionSingleton conn;
+        SqlConnection con;
         public UserRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            this.conn = SqlConnectionSingleton.GetInstance();
+            con = SqlConnectionSingleton.GetSingleConnetion();
+            con.ConnectionString = connectionString;
         }
         // Methods for CRUD operations on Actor entities would go here
         
         void IRepository<User>.Add(User entity)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
 
@@ -34,8 +36,6 @@ namespace MovieCinema.Repositories
         }
         void IRepository<User>.Delete(int id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
 
@@ -48,8 +48,6 @@ namespace MovieCinema.Repositories
         }
         void IRepository<User>.Update(User entity)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
 
@@ -63,10 +61,8 @@ namespace MovieCinema.Repositories
             Console.WriteLine($"User {entity.GetUserId()} was Updated Successfully");
 
         }
-        List<User> IRepository<User>.GetAll()
+        IEnumerable<User> IRepository<User>.GetAll()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand("SELECT * FROM Users", con);
@@ -87,8 +83,6 @@ namespace MovieCinema.Repositories
         }
         User IRepository<User>.GetById(int id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Users WHERE UserId={id}", con);

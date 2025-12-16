@@ -25,7 +25,7 @@ namespace MovieCinema.Repositories
         void IRepository<Ticket>.Update(Ticket entity)
         {
         }
-        List<Ticket> IRepository<Ticket>.GetAll()
+        IEnumerable<Ticket> IRepository<Ticket>.GetAll()
         {
             return null;
 

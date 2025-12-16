@@ -69,6 +69,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Seat\Seat.cs" />
     <Compile Include="ShowTime\ShowTime.cs" />
+    <Compile Include="SqlConectionSingleton\SqlConnection.cs" />
     <Compile Include="Ticket\Ticket.cs" />
     <Compile Include="Users\User.cs" />
   </ItemGroup>

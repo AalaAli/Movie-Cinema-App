@@ -3,6 +3,7 @@ using MovieCinema.Genres;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,20 +14,24 @@ namespace MovieCinema.Movies
         internal int MovieId { get; set; }
         internal string Title;
         internal String Description;
+        internal int ReleaseYear;
         internal int Duration; // in minutes
         internal string PosterPath;
         internal float Rating;
+        internal int GenreId;
         internal List<GenreComponent> Genres;
         internal List<Actor> Actors;
         public Movie() { }
-        public  Movie(int MvId, string Tit, string Desc, int Dur, string PstPth, float Rt)
+        public  Movie(int MvId, string Tit, string Desc,int releasYear, int Dur, string PstPth, float Rt, int genreId)
         {
             MovieId = MvId;
             Title = Tit;
             Description = Desc;
+            ReleaseYear = releasYear;
             Duration = Dur; 
             PosterPath = PstPth;
             Rating = Rt;
+            GenreId = genreId;
             Genres = new List<GenreComponent>();
             Actors = new List<Actor>();
 
@@ -44,18 +49,18 @@ namespace MovieCinema.Movies
         {
             Genres.Remove(Genre);
         }
-        public List<GenreComponent> GetGenres()
-        {
-            return Genres;
-        }
-        public List<Actor> GetActors()
-        {
-            return Actors;
-        }
-        public string GetDescription()
-        {
-            return Description;
-        }
+        public int GetMovieId()=> MovieId;
+        public string GetTitle() => Title;
+        public string GetDescription() => Description;
+        public int GetReleaseYear() => ReleaseYear;
+        public int GetDuration() => Duration;
+        public string GetPosterPath()=> PosterPath;
+        public float GetRating() => Rating;
+        public int GetGenreId() => GenreId;
+
+        public List<GenreComponent> GetGenres() => Genres; 
+        public List<Actor> GetActors() => Actors;
+
         public bool HasGenre(string GenreName)
         {
             foreach(var genre in Genres)
@@ -73,7 +78,6 @@ namespace MovieCinema.Movies
                     return true;
             }
             return false;
-
         }
 
        
@@ -91,7 +95,6 @@ namespace MovieCinema.Movies
             {
                 Console.WriteLine($"Genre: {genre.GenreName}");
             }
-
         }
     }
    

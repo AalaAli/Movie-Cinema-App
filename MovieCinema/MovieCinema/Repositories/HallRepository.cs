@@ -6,26 +6,24 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MovieCinema.SqlConectionSingleton;
 namespace MovieCinema.Repositories
 {
     internal class HallRepository:IRepository<Hall>
     {
-
-        string connectionString;
+        SqlConnectionSingleton conn;
+        SqlConnection con;
         public HallRepository(string connectionString)
         {
-            this.connectionString = connectionString;
+            this.conn = SqlConnectionSingleton.GetInstance();
+            con = SqlConnectionSingleton.GetSingleConnetion();
+            con.ConnectionString = connectionString;
         }
         // Methods for CRUD operations on Actor entities would go here
-
         void IRepository<Hall>.Add(Hall entity)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
-
             SqlCommand cmd = new SqlCommand("insert into Halls values(@hall_name,@cinema_id,@seatcount); ", con);
             cmd.Parameters.AddWithValue("@hall_name", entity.GetHallName());
             cmd.Parameters.AddWithValue("@cinema_id", entity.GetCinemaId());
@@ -34,22 +32,21 @@ namespace MovieCinema.Repositories
             con.Close();
             Console.WriteLine("Hall Added Successfully");
         }
+
+
+
         void IRepository<Hall>.Delete(int id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
-
             SqlCommand cmd = new SqlCommand($"DELETE FROM Halls WHERE HallId={id}", con);
             cmd.ExecuteNonQuery();
             con.Close();
             Console.WriteLine($"Hall {id} was Deleted Successfully");
         }
+
         void IRepository<Hall>.Update(Hall entity)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
 
@@ -61,10 +58,8 @@ namespace MovieCinema.Repositories
             con.Close();
             Console.WriteLine($"Hall {entity.GetHallId()} was Updated Successfully");
         }
-        List<Hall> IRepository<Hall>.GetAll()
+        IEnumerable<Hall> IRepository<Hall>.GetAll()
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand("SELECT * FROM Halls", con);
@@ -81,15 +76,13 @@ namespace MovieCinema.Repositories
         }
         Hall IRepository<Hall>.GetById(int id)
         {
-            SqlConnection con = new SqlConnection();
-            con.ConnectionString = connectionString;
             con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Halls WHERE HallId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             Hall hall = new Hall(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
-  
+            
             con.Close();
             return hall;
         }

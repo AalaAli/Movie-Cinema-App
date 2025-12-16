@@ -26,7 +26,7 @@ namespace MovieCinema.Repositories
         void IRepository<Seat>.Update(Seat entity)
         {
         }
-        List<Seat> IRepository<Seat>.GetAll()
+        IEnumerable<Seat> IRepository<Seat>.GetAll()
         {
             return null;
 

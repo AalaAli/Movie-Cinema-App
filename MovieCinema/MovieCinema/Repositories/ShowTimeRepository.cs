@@ -24,7 +24,7 @@ namespace MovieCinema.Repositories
         void IRepository<ShowTime>.Update(ShowTime entity)
         {
         }
-        List<ShowTime> IRepository<ShowTime>.GetAll()
+        IEnumerable<ShowTime> IRepository<ShowTime>.GetAll()
         {
             return null;
 
