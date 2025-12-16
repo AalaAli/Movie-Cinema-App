@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MovieCinema.Repositories
 {
-    internal class MovieRepository:IRepository<Movie>
+    public class MovieRepository:IRepository<Movie>
     {
         SqlConnectionSingleton conn;
         SqlConnection con;
@@ -73,7 +73,7 @@ namespace MovieCinema.Repositories
             while (reader.Read())
             {
 
-                Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1),reader.GetString(2),reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetFloat(6));
+                Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1),reader.GetString(2),reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6));
                 movies.Add(movie);
             }
             con.Close();
@@ -86,7 +86,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Movies WHERE MovieId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetFloat(6)); 
+            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6)); 
             con.Close();
             return movie;
         }

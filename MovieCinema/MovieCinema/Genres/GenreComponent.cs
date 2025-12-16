@@ -11,11 +11,14 @@ namespace MovieCinema.Genres
     {
         internal int GenreId;
         internal string GenreName;
+        public int? ParentId { get; set; } 
+
         public GenreComponent() { }
-        public GenreComponent(int GnId, string GnName)
+        public GenreComponent(int GnId, string GnName, int? parentId)
         {
             GenreId = GnId;
             GenreName = GnName;
+            ParentId = parentId;
         }
         public abstract void DisplayGenre();
         public abstract bool IsLeaf();

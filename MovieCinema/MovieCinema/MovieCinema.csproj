@@ -48,8 +48,10 @@
     <Compile Include="Genres\Genre.cs" />
     <Compile Include="Genres\GenreComponent.cs" />
     <Compile Include="Genres\GenreGroup.cs" />
+    <Compile Include="Genres\GenreService.cs" />
     <Compile Include="Hall\Hall.cs" />
     <Compile Include="Movies\MovieSearchContext.cs" />
+    <Compile Include="Movies\MovieService.cs" />
     <Compile Include="Movies\SearchByActorStrategy.cs" />
     <Compile Include="Movies\SearchByGenreStrategy.cs" />
     <Compile Include="Movies\SearchByTitleStrategy.cs" />

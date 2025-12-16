@@ -17,11 +17,11 @@ namespace MovieCinema.Movies
         internal int ReleaseYear;
         internal int Duration; // in minutes
         internal string PosterPath;
-        internal float Rating;
+        internal decimal Rating;
         internal List<GenreComponent> Genres;
         internal List<Actor> Actors;
         public Movie() { }
-        public  Movie(int MvId, string Tit, string Desc,int releasYear, int Dur, string PstPth, float Rt)
+        public  Movie(int MvId, string Tit, string Desc,int releasYear, int Dur, string PstPth, decimal Rt)
         {
             MovieId = MvId;
             Title = Tit;
@@ -53,8 +53,7 @@ namespace MovieCinema.Movies
         public int GetReleaseYear() => ReleaseYear;
         public int GetDuration() => Duration;
         public string GetPosterPath()=> PosterPath;
-        public float GetRating() => Rating;
-
+        public decimal GetRating() => Rating;
         public List<GenreComponent> GetGenres() => Genres; 
         public List<Actor> GetActors() => Actors;
 
@@ -77,10 +76,7 @@ namespace MovieCinema.Movies
             return false;
         }
 
-       
-
-        
-        public Movie CloneMovie()
+        public Movie Clone()
         {
             return (Movie)this.MemberwiseClone();
         }

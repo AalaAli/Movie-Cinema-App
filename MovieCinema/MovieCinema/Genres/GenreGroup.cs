@@ -10,7 +10,7 @@ namespace MovieCinema.Genres
     {
         private List<GenreComponent> _genres = new List<GenreComponent>();
         public GenreGroup() { }
-        public GenreGroup(int GnId, string GnName) : base(GnId,GnName)
+        public GenreGroup(int GnId, string GnName) : base(GnId,GnName,null)
         {
         }
         public void AddGenre(GenreComponent genre)

@@ -64,7 +64,7 @@ namespace MovieCinema.Repositories
             while (reader.Read())
             {
 
-                GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
+                GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1),reader.GetInt32(3));
                 genres.Add(genre);
             }
             con.Close();
@@ -77,7 +77,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Genres WHERE GenreId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
+            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(3));
             con.Close();
             return genre;
         }

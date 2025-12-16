@@ -37,8 +37,9 @@ namespace MovieCinema
 
             IRepository<Hall> H = new HallRepository(ConnectionString);
             IRepository<Movie> M = new MovieRepository(ConnectionString);
-            Movie m = new Movie(0, "The help", "A Dramatic Movie", 2012, 120, "\\C:\\images", 4.5f);
-            M.Add(m);
+            Movie m = new Movie(0, "The help", "A Dramatic Movie", 2012, 120, "\\C:\\images", 4.2m);
+          Movie movie = M.GetById(4);
+          
             //Hall hall= H.GetById(2);
             // Console.WriteLine($"HallId:{hall.GetHallId()} HallName:{hall.GetHallName()} CinemaId:{hall.GetCinemaId()} Seatcount:{hall.GetSeatCount()}");
 
@@ -47,19 +48,18 @@ namespace MovieCinema
             //        H.Update(new Hall(2, "H2", 2, 10));
 
             // IRepository<Actor> AR = new ActorRepository(ConnectionString);
-            /*  IRepository<GenreComponent> Gn = new GenreRepository(ConnectionString);
+              IRepository<GenreComponent> Gn = new GenreRepository(ConnectionString);
              GenreComponent genre = new Genre(1,"Action");
-             GenreComponent g =Gn.GetById(2);*/
 
             //     Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
 
-            //   Gn.Add(genre);
-            // Gn.Update(new Genre(2, "Drama"));
-            /*           List<GenreComponent> genres =Gn.GetAll();
-                        foreach (var g in genres)
-                        {
-                            Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
-                        }*/
+            Gn.Add(genre);
+             Gn.Update(new Genre(2, "Drama"));
+             IEnumerable<GenreComponent> genres =Gn.GetAll();
+               foreach (var g in genres)
+               {
+               Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
+                }
             //Gn.Delete(1);
             /*            IRepository<Actor>AR= new ActorRepository(ConnectionString);
                            Actor a= new Actor(1, "Leonardo DiCaprio", "An American actor and producer.", new DateTime(1974, 11, 11));
