@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MovieCinema
 {
     public interface ITicketService {
-         Ticket CreateTicket(int TId, int UId, int STime, int StId, double Prc, DateTime BDate, bool IsPd);
+         Ticket CreateTicket(int TId, int UId, int STime, int StId, decimal Prc, DateTime BDate, bool IsPd);
          void PrintTicket();
     }
     public class Ticket : ITicketService
@@ -16,10 +16,10 @@ namespace MovieCinema
         int UserId;
         int ShowTime;
         int SeatId;
-        double Price;
+        decimal Price;
         DateTime BookingDate;
         bool IsPaid;
-        public Ticket CreateTicket(int TId, int UId, int STime, int StId, double Prc, DateTime BDate, bool IsPd)
+        public Ticket CreateTicket(int TId, int UId, int STime, int StId, decimal Prc, DateTime BDate, bool IsPd)
         {
             return new Ticket { 
                 BookingDate = BDate, IsPaid = IsPd, Price = Prc, SeatId = StId, ShowTime = STime, TicketId = TId, UserId = UId 
@@ -29,6 +29,13 @@ namespace MovieCinema
             Console.WriteLine($"TicketId: {TicketId} UserId: {UserId} ShowTime: {ShowTime} SeatId: {SeatId} Price: {Price} BookingDate: {BookingDate} IsPaid{IsPaid}");
 
         }
+        public int GetTicketId() => TicketId;
+        public int GetUserId() => UserId;
+        public int GetShowTimeId() => ShowTime;
+        public int GetSeatId() => SeatId;
+        public decimal GetPrice() => Price;
+        public DateTime GetBookingDate() => BookingDate;
+        public bool GetIsPaid() => IsPaid;
 
     }
 
@@ -39,7 +46,7 @@ namespace MovieCinema
         {
             _RealTicket = RealTicket;
         }
-        public  Ticket CreateTicket(int TId, int UId, int STime, int StId, double Prc, DateTime BDate, bool IsPd)
+        public  Ticket CreateTicket(int TId, int UId, int STime, int StId, decimal Prc, DateTime BDate, bool IsPd)
         {
             if (Prc < 0) 
             {       

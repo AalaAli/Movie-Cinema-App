@@ -25,11 +25,12 @@ namespace MovieCinema.Repositories
             con.Open();
             Console.WriteLine(con.State.ToString());
 
-            SqlCommand cmd = new SqlCommand("insert into Users values(@u_name,@email,@password,@phone) ",con);
+            SqlCommand cmd = new SqlCommand("insert into Users values(@u_name,@email,@password,@phone,@is_admin) ",con);
             cmd.Parameters.AddWithValue("@u_name",entity.GetUserName());
             cmd.Parameters.AddWithValue("@email",entity.GetEmail());
             cmd.Parameters.AddWithValue("@password", entity.GetPassword());
             cmd.Parameters.AddWithValue("@phone",entity.GetPhone());
+            cmd.Parameters.AddWithValue("@is_admin", entity.GetIsAdmin());
             cmd.ExecuteNonQuery();
             con.Close();
             Console.WriteLine("User Added Successfully");
@@ -51,11 +52,12 @@ namespace MovieCinema.Repositories
             con.Open();
             Console.WriteLine(con.State.ToString());
 
-            SqlCommand cmd = new SqlCommand($"UPDATE Users SET UserName = @u_name ,Email=@email, PasswordHash=@password, Phone=@phone WHERE UserId={entity.GetUserId()}", con);
+            SqlCommand cmd = new SqlCommand($"UPDATE Users SET UserName = @u_name ,Email=@email, PasswordHash=@password, Phone=@phone,IsAdmin=is_admin WHERE UserId={entity.GetUserId()}", con);
             cmd.Parameters.AddWithValue("@u_name", entity.GetUserName());
             cmd.Parameters.AddWithValue("@email", entity.GetEmail());
             cmd.Parameters.AddWithValue("@password", entity.GetPassword());
             cmd.Parameters.AddWithValue("@phone", entity.GetPhone());
+            cmd.Parameters.AddWithValue("@is_admin", entity.GetIsAdmin());
             cmd.ExecuteNonQuery();
             con.Close();
             Console.WriteLine($"User {entity.GetUserId()} was Updated Successfully");
@@ -69,13 +71,8 @@ namespace MovieCinema.Repositories
             SqlDataReader reader = cmd.ExecuteReader();
             List<User> users = new List<User>();
             while (reader.Read())
-            {
-                int userId = reader.GetInt32(0);
-                string userName = reader.GetString(1);
-                string email = reader.GetString(2);
-                string passwordHash = reader.GetString(3);
-                string phone = reader.GetString(4);
-                User user = new User(userId, userName, passwordHash, email, phone);
+            { 
+                User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4),reader.GetBoolean(5));
                 users.Add(user);
             }
             con.Close();
@@ -88,8 +85,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Users WHERE UserId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-                User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
-            
+            User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetBoolean(5));
             con.Close();
             return user;
         }

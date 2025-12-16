@@ -18,11 +18,10 @@ namespace MovieCinema.Movies
         internal int Duration; // in minutes
         internal string PosterPath;
         internal float Rating;
-        internal int GenreId;
         internal List<GenreComponent> Genres;
         internal List<Actor> Actors;
         public Movie() { }
-        public  Movie(int MvId, string Tit, string Desc,int releasYear, int Dur, string PstPth, float Rt, int genreId)
+        public  Movie(int MvId, string Tit, string Desc,int releasYear, int Dur, string PstPth, float Rt)
         {
             MovieId = MvId;
             Title = Tit;
@@ -31,7 +30,6 @@ namespace MovieCinema.Movies
             Duration = Dur; 
             PosterPath = PstPth;
             Rating = Rt;
-            GenreId = genreId;
             Genres = new List<GenreComponent>();
             Actors = new List<Actor>();
 
@@ -56,7 +54,6 @@ namespace MovieCinema.Movies
         public int GetDuration() => Duration;
         public string GetPosterPath()=> PosterPath;
         public float GetRating() => Rating;
-        public int GetGenreId() => GenreId;
 
         public List<GenreComponent> GetGenres() => Genres; 
         public List<Actor> GetActors() => Actors;

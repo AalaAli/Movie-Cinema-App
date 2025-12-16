@@ -13,21 +13,23 @@ namespace MovieCinema
         string Password;
         string Email;
         string Phone;
+        bool IsAdmin;
 
-        public User(int id, string username, string password, string email,string phone)
+        public User(int id, string username, string password, string email,string phone, bool isAdmin)
         {
             UserId = id;
             UserName = username;
             Password = password;
             Email = email;
             Phone = phone;
-
+            IsAdmin = isAdmin;
         }
-       public int GetUserId()=>UserId;
+        public int GetUserId()=>UserId;
         public string GetUserName() => UserName;
         public string GetPassword() => Password;
         public string GetEmail() => Email;
         public string GetPhone()=>Phone;
+        public bool GetIsAdmin()=>IsAdmin;
 
 
     }

@@ -37,8 +37,8 @@ namespace MovieCinema
 
             IRepository<Hall> H = new HallRepository(ConnectionString);
             IRepository<Movie> M = new MovieRepository(ConnectionString);
-            Movie m = new Movie(4,"The Dark Night"," A thriller",2010,148,"/path/to/poster.jpg",8.8f,2);
-            M.Update(m);
+            Movie m = new Movie(0, "The help", "A Dramatic Movie", 2012, 120, "\\C:\\images", 4.5f);
+            M.Add(m);
             //Hall hall= H.GetById(2);
             // Console.WriteLine($"HallId:{hall.GetHallId()} HallName:{hall.GetHallName()} CinemaId:{hall.GetCinemaId()} Seatcount:{hall.GetSeatCount()}");
 

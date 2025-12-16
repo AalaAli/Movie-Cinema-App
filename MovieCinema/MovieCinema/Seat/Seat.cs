@@ -23,6 +23,12 @@ namespace MovieCinema
             SeatType = StType;
             IsAvailable = IsAv;
         }
+        public int GetSeatId() => SeatId;
+        public int GetHallId() => HallId;
+        public int GetRowNumber() => RowNumber;
+        public int GetSeatNumber() => SeatNumber;
+        public string GetSeatType() => SeatType;
+        public bool GetIsAvailable() => IsAvailable;
         public void Display()
         {
             Console.WriteLine($"Seat ID: {SeatId}, Hall ID: {HallId}, Row Number: {RowNumber}, Seat Number: {SeatNumber}, Seat Type: {SeatType}, Is Available: {IsAvailable}");

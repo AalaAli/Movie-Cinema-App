@@ -26,14 +26,13 @@ namespace MovieCinema.Repositories
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand("insert into Movies values(@title,@description,@release_year,@duration,@posterpath,@rating,@genre_id); ", con);
+            SqlCommand cmd = new SqlCommand("insert into Movies values(@title,@description,@release_year,@duration,@posterpath,@rating); ", con);
             cmd.Parameters.AddWithValue("@title", entity.GetTitle());
             cmd.Parameters.AddWithValue("@description", entity.GetDescription());
             cmd.Parameters.AddWithValue("@release_year", entity.GetReleaseYear());
             cmd.Parameters.AddWithValue("@duration", entity.GetDuration());
             cmd.Parameters.AddWithValue("@posterpath", entity.GetPosterPath());
             cmd.Parameters.AddWithValue("@rating", entity.GetRating());
-            cmd.Parameters.AddWithValue("@genre_id", entity.GetGenreId());
 
             cmd.ExecuteNonQuery();
             con.Close();
@@ -52,14 +51,13 @@ namespace MovieCinema.Repositories
         void IRepository<Movie>.Update(Movie entity)
         {
             con.Open();
-            SqlCommand cmd = new SqlCommand($"UPDATE  Movies SET Title= @title, Description= @description, ReleaseYear= @release_year, DurationMinutes = @duration,PosterPath = @posterpath, Rating = @rating, GenreId = @genre_id WHERE MovieId={entity.GetMovieId()}; ", con);
+            SqlCommand cmd = new SqlCommand($"UPDATE  Movies SET Title= @title, Description= @description, ReleaseYear= @release_year, DurationMinutes = @duration,PosterPath = @posterpath, Rating = @rating WHERE MovieId={entity.GetMovieId()}; ", con);
             cmd.Parameters.AddWithValue("@title", entity.GetTitle());
             cmd.Parameters.AddWithValue("@description", entity.GetDescription());
             cmd.Parameters.AddWithValue("@release_year", entity.GetReleaseYear());
             cmd.Parameters.AddWithValue("@duration", entity.GetDuration());
             cmd.Parameters.AddWithValue("@posterpath", entity.GetPosterPath());
             cmd.Parameters.AddWithValue("@rating", entity.GetRating());
-            cmd.Parameters.AddWithValue("@genre_id", entity.GetGenreId());
             cmd.ExecuteNonQuery();
             con.Close();
             Console.WriteLine($"Movie {entity.GetMovieId()} was Updated Successfully");
@@ -75,7 +73,7 @@ namespace MovieCinema.Repositories
             while (reader.Read())
             {
 
-                Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1),reader.GetString(2),reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetFloat(6),reader.GetInt32(7));
+                Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1),reader.GetString(2),reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetFloat(6));
                 movies.Add(movie);
             }
             con.Close();
@@ -88,7 +86,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Movies WHERE MovieId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetFloat(6), reader.GetInt32(7)); 
+            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetFloat(6)); 
             con.Close();
             return movie;
         }
