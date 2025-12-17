@@ -20,7 +20,7 @@ namespace MovieCinema.Repositories
         }
         // Methods for CRUD operations on Actor entities would go here
         
-        void IRepository<User>.Add(User entity)
+       public void Add(User entity)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -35,7 +35,7 @@ namespace MovieCinema.Repositories
             con.Close();
             Console.WriteLine("User Added Successfully");
         }
-        void IRepository<User>.Delete(int id)
+       public void Delete(int id)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -47,7 +47,7 @@ namespace MovieCinema.Repositories
            
 
         }
-        void IRepository<User>.Update(User entity)
+     public void Update(User entity)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -63,7 +63,7 @@ namespace MovieCinema.Repositories
             Console.WriteLine($"User {entity.GetUserId()} was Updated Successfully");
 
         }
-        IEnumerable<User> IRepository<User>.GetAll()
+       public IEnumerable<User> GetAll()
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -78,7 +78,7 @@ namespace MovieCinema.Repositories
             con.Close();
             return users;
         }
-        User IRepository<User>.GetById(int id)
+       public User GetById(int id)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -89,5 +89,18 @@ namespace MovieCinema.Repositories
             con.Close();
             return user;
         }
+       public User GetByUserName(string userName)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Users WHERE UserName=@user_name", con);
+            cmd.Parameters.AddWithValue("@user_name",userName);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetBoolean(5));
+            con.Close();
+            return user;
+        }
+
     }
 }

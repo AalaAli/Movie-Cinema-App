@@ -15,12 +15,12 @@ namespace MovieCinema
         string Phone;
         bool IsAdmin;
 
-        public User(int id, string username, string password, string email,string phone, bool isAdmin)
+        public User(int id, string username, string email, string password,string phone, bool isAdmin)
         {
             UserId = id;
             UserName = username;
-            Password = password;
             Email = email;
+            Password = password;
             Phone = phone;
             IsAdmin = isAdmin;
         }

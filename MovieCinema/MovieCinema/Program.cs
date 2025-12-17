@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using MovieCinema.Repositories;
 using MovieCinema.Actors;
+using MovieCinema.Users;
 namespace MovieCinema
 {
     internal class Program
@@ -35,11 +36,12 @@ namespace MovieCinema
 
             string ConnectionString="server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
 
-            IRepository<Hall> H = new HallRepository(ConnectionString);
-            IRepository<Movie> M = new MovieRepository(ConnectionString);
-            Movie m = new Movie(0, "The help", "A Dramatic Movie", 2012, 120, "\\C:\\images", 4.2m);
-          Movie movie = M.GetById(4);
-          
+            UserRepository U = new UserRepository(ConnectionString);
+            UserService Uservice = new UserService(U);
+
+           User user= Uservice.Login("Alshaima", "5555");
+            Console.WriteLine(user.GetUserName());          
+            //Console.WriteLine(user.GetUserName());
             //Hall hall= H.GetById(2);
             // Console.WriteLine($"HallId:{hall.GetHallId()} HallName:{hall.GetHallName()} CinemaId:{hall.GetCinemaId()} Seatcount:{hall.GetSeatCount()}");
 
@@ -48,17 +50,9 @@ namespace MovieCinema
             //        H.Update(new Hall(2, "H2", 2, 10));
 
             // IRepository<Actor> AR = new ActorRepository(ConnectionString);
-              IRepository<GenreComponent> Gn = new GenreRepository(ConnectionString);
-             GenreComponent genre = new Genre(1,"Action");
 
             //     Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
 
-            Gn.Add(genre);
-             Gn.Update(new Genre(2, "Drama"));
-             IEnumerable<GenreComponent> genres =Gn.GetAll();
-               foreach (var g in genres)
-               {
-               Console.WriteLine($"GenreId; {g.GetGenreId()} GenreName: {g.GetGenreName()}");
                 }
             //Gn.Delete(1);
             /*            IRepository<Actor>AR= new ActorRepository(ConnectionString);
@@ -90,4 +84,4 @@ namespace MovieCinema
 
         }
     }
-}
+
