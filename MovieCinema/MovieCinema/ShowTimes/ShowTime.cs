@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieCinema
+namespace MovieCinema.ShowTimes
 {
     public class ShowTime
     {
-        int ShowTimeId;
-        int MovieId;
-        int HallId;
-        DateTime StartTime;
-        DateTime EndTime;
-        decimal Price;
-        string Language;
+        internal int ShowTimeId;
+        internal int MovieId;
+        internal int HallId;
+        internal DateTime StartTime;
+        internal DateTime EndTime;
+        internal decimal Price;
+        internal string Language;
+        public ShowTime() { }
         public ShowTime(int showTimeId, int movieId, int hallId, DateTime startTime, DateTime endTime, decimal price, string language)
         {
             ShowTimeId = showTimeId;

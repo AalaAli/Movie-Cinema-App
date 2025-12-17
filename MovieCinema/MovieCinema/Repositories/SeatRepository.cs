@@ -1,4 +1,5 @@
 ﻿using MovieCinema.Genres;
+using MovieCinema.Seats;
 using MovieCinema.SqlConectionSingleton;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace MovieCinema.Repositories
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand("insert into Seats values(@hall_id,@row_number,@seat_number, @seat_type, @is_available); ", con);
+           SqlCommand cmd = new SqlCommand("insert into Seats values(@hall_id,@row_number,@seat_number, @seat_type, @is_available); ", con);
             cmd.Parameters.AddWithValue("@hall_id", entity.GetHallId());
             cmd.Parameters.AddWithValue("@row_number", entity.GetRowNumber());
             cmd.Parameters.AddWithValue("@seat_number", entity.GetSeatNumber());
@@ -46,6 +47,7 @@ namespace MovieCinema.Repositories
         }
         void IRepository<Seat>.Update(Seat entity)
         {
+
         }
         IEnumerable<Seat> IRepository<Seat>.GetAll()
         {
@@ -55,9 +57,8 @@ namespace MovieCinema.Repositories
             List<Seat> seats = new List<Seat>();
             while (reader.Read())
             {
-                SeatFactory seatFactory = new SeatFactory();
-
-                Seat seat = seatFactory.CreateSeat(reader.GetInt32(0),reader.GetInt32(1),reader.GetInt32(2),reader.GetInt32(3),reader.GetString(4),reader.GetBoolean(5));
+                SeatFactory seatFactory = new SeatFactory(new SeatFlyweightFactory());
+                Seat seat = seatFactory.CreateSeat(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetString(4), reader.GetBoolean(5));
                 seats.Add(seat);
             }
             con.Close();
@@ -69,10 +70,11 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Seats WHER SeatId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-             SeatFactory seatFactory = new SeatFactory();
+
+            SeatFactory seatFactory = new SeatFactory(new SeatFlyweightFactory());
             Seat seat = seatFactory.CreateSeat(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetString(4), reader.GetBoolean(5));
             con.Close();
-            return seat;
+          return seat;
         }
 
     }
