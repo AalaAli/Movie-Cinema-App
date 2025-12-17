@@ -25,6 +25,14 @@ namespace MovieCinema
             Price = price;
             Language = language;
         }
+        public void DisplayInfo()
+        {
+            Console.WriteLine(
+                $"MovieId: {MovieId}, HallId: {HallId}, " +
+                $"Start: {StartTime}, End: {EndTime}, " +
+                $"Price: {Price}, Language: {Language}"
+            );
+        }
         public int GetShowTimeId() => ShowTimeId;
         public int GetMovieId() => MovieId;
         public int GetHallId() => HallId;
