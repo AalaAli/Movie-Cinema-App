@@ -44,10 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\Actor.cs" />
+    <Compile Include="CinemaFacad\CinemaFacade.cs" />
     <Compile Include="Cinema\Cinema.cs" />
     <Compile Include="Genres\Genre.cs" />
     <Compile Include="Genres\GenreComponent.cs" />
-    <Compile Include="Genres\GenreGroup.cs" />
+    <Compile Include="Genres\GenreComposite.cs" />
     <Compile Include="Genres\GenreService.cs" />
     <Compile Include="Hall\Hall.cs" />
     <Compile Include="Movies\MovieSearchContext.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ActorRepository.cs" />
     <Compile Include="Repositories\CinemaRepository.cs" />
+    <Compile Include="Repositories\GenreicRepository.cs" />
     <Compile Include="Repositories\GenreRepository.cs" />
     <Compile Include="Repositories\HallRepository.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
@@ -75,14 +77,21 @@
     <Compile Include="Seats\SeatFlyweightFactory.cs" />
     <Compile Include="ShowTimes\MaxShowTimeBuilder.cs" />
     <Compile Include="ShowTimes\ShowTimeDirector.cs" />
+    <Compile Include="ShowTimes\ShowTimeService.cs" />
     <Compile Include="ShowTimes\ThreeDShowTimeBuilder.cs" />
     <Compile Include="ShowTimes\TwoDShowTimeBuilder.cs" />
     <Compile Include="ShowTimes\IShowTimeBuilder.cs" />
     <Compile Include="ShowTimes\ShowTime.cs" />
     <Compile Include="SqlConectionSingleton\SqlConnection.cs" />
     <Compile Include="Ticket\Ticket.cs" />
+    <Compile Include="Ticket\TicketService.cs" />
+    <Compile Include="Users\AdminObserver.cs" />
+    <Compile Include="Users\Event.cs" />
+    <Compile Include="Users\IObserver.cs" />
+    <Compile Include="Users\ISubject.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Users\UserService.cs" />
+    <Compile Include="Users\UsrObserver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

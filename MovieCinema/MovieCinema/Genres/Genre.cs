@@ -8,7 +8,7 @@ namespace MovieCinema.Genres
 {
     public  class Genre:GenreComponent
     {
-        public Genre(int GnId, string GnName,int ParentId) : base(GnId, GnName,ParentId)
+        public Genre(int GnId, string GnName) : base(GnId, GnName)
         {
         }
         public override void DisplayGenre()

@@ -10,7 +10,7 @@ namespace MovieCinema.Users
     internal class UserService
     {
 
-        private readonly UserRepository _userRepository;
+        private readonly IRepository<User> _userRepository;
 
         public UserService(UserRepository repository)
         {
@@ -20,7 +20,7 @@ namespace MovieCinema.Users
         public User Login(string username, string password)
         {
 
-            var user = _userRepository.GetByUserName(username);
+            var user = _userRepository.GetByName(username);
             if (user == null) throw new Exception("User doesn't exist");
             if (!user.GetPassword().Equals(password)) throw new Exception("Invalid Password");
 
@@ -30,7 +30,7 @@ namespace MovieCinema.Users
 
         public void Register(User user)
         {
-            User u= _userRepository.GetByUserName(user.GetUserName());
+            User u= _userRepository.GetByName(user.GetUserName());
             if (u == null)  
                  _userRepository.Add(user);
             else

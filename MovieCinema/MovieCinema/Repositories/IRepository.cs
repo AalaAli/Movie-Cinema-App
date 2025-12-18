@@ -10,9 +10,14 @@ namespace MovieCinema.Repositories
     {
         T GetById(int id);
         IEnumerable<T> GetAll();
+        T GetByName(string name);
+
         void Add(T entity);
         void Update(T entity);
         void Delete(int id);
+        List<T> GetByMovie(int movieId);
+
+        bool HasConflict(T entity);
 
     }
 

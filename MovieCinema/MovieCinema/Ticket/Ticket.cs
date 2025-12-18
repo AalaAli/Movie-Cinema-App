@@ -7,31 +7,30 @@ using System.Threading.Tasks;
 namespace MovieCinema
 {
     public interface ITicketService {
-         Ticket CreateTicket(int TId, int UId, int STime, int StId, decimal Prc, DateTime BDate, bool IsPd);
+         Ticket CreateTicket(int ticketId, int userId, int showTimeId, int seatId, decimal price, DateTime birthDate, bool isPaid);
          void PrintTicket();
     }
     public class Ticket : ITicketService
     {
         int TicketId;
         int UserId;
-        int ShowTime;
+        int ShowTimeId;
         int SeatId;
         decimal Price;
         DateTime BookingDate;
         bool IsPaid;
-        public Ticket CreateTicket(int TId, int UId, int STime, int StId, decimal Prc, DateTime BDate, bool IsPd)
+        public Ticket CreateTicket(int ticketId, int userId, int showTimeId, int seatId, decimal price, DateTime birthDate, bool isPaid)
         {
             return new Ticket { 
-                BookingDate = BDate, IsPaid = IsPd, Price = Prc, SeatId = StId, ShowTime = STime, TicketId = TId, UserId = UId 
+                BookingDate = birthDate, IsPaid = isPaid, Price = price, SeatId = seatId, ShowTimeId = showTimeId, TicketId = ticketId, UserId = userId 
             };
         }
         public void PrintTicket() {
-            Console.WriteLine($"TicketId: {TicketId} UserId: {UserId} ShowTime: {ShowTime} SeatId: {SeatId} Price: {Price} BookingDate: {BookingDate} IsPaid{IsPaid}");
-
+            Console.WriteLine($"TicketId: {TicketId} UserId: {UserId} ShowTime: {ShowTimeId} SeatId: {SeatId} Price: {Price} BookingDate: {BookingDate} IsPaid{IsPaid}");
         }
         public int GetTicketId() => TicketId;
         public int GetUserId() => UserId;
-        public int GetShowTimeId() => ShowTime;
+        public int GetShowTimeId() => ShowTimeId;
         public int GetSeatId() => SeatId;
         public decimal GetPrice() => Price;
         public DateTime GetBookingDate() => BookingDate;
@@ -46,15 +45,15 @@ namespace MovieCinema
         {
             _RealTicket = RealTicket;
         }
-        public  Ticket CreateTicket(int TId, int UId, int STime, int StId, decimal Prc, DateTime BDate, bool IsPd)
+        public  Ticket CreateTicket(int ticketId, int userId, int showTimeId, int seatId, decimal price, DateTime birthDate, bool isPaid)
         {
-            if (Prc < 0) 
+            if (price < 0) 
             {       
                throw new ArgumentException("Price cannot be negative");
             }
             Console.WriteLine("Proxy : Validating ticket creation request...");
             Console.WriteLine("Ticket created successfully:");
-            return _RealTicket.CreateTicket( TId,  UId,  STime,  StId,  Prc,  BDate,  IsPd);
+            return _RealTicket.CreateTicket( ticketId,  userId,  showTimeId,  seatId,  price,  birthDate,  isPaid);
         }
         public void PrintTicket() { 
             if(_RealTicket!= null) 

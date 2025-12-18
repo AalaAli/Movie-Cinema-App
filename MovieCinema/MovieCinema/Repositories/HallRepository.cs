@@ -86,6 +86,26 @@ namespace MovieCinema.Repositories
             con.Close();
             return hall;
         }
+        Hall IRepository<Hall>.GetByName(string name)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Halls WHERE HallName='{name}'", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Hall hall = new Hall(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
+            con.Close();
+            return hall;
+        }
+        List<Hall> IRepository<Hall>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<Hall>.HasConflict(Hall entity)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

@@ -28,9 +28,36 @@ namespace MovieCinema
             seat2.DisplaySeatInfo();
             seat3.DisplaySeatInfo();
             string ConnectionString = "server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
-            IRepository<Seat> S =new SeatRepository(ConnectionString);
-            S.Add(seat1);
+            IRepository<ShowTime> showTimeRepo = new ShowTimeRepository(ConnectionString);
+            var showTimeService = new ShowTimeService(showTimeRepo);
 
+           //Add showTime
+            showTimeService.CreateShowTime(
+                movieId: 4,
+                hallId:2,
+                start: DateTime.Today.AddHours(18),
+                end: DateTime.Today.AddHours(20),
+                price: 10m,
+                language: "English"
+            );
+
+            // إضافة عرض متعارض
+            showTimeService.CreateShowTime(
+                movieId: 4,
+                hallId: 2,
+                start: DateTime.Today.AddHours(19),
+                end: DateTime.Today.AddHours(21),
+                price: 12m,
+                language: "English"
+            );
+
+            // جلب العروض
+            var shows = showTimeService.GetShowTimesByMovie(1);
+
+            foreach (var s in shows)
+            {
+                Console.WriteLine($"{s.StartTime:t} - {s.EndTime:t} | {s.Price}$");
+            }
         }
     }
 

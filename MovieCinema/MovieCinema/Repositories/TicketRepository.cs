@@ -87,5 +87,17 @@ namespace MovieCinema.Repositories
             con.Close();
             return ticket;
         }
+        Ticket IRepository<Ticket>.GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+        List<Ticket> IRepository<Ticket>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<Ticket>.HasConflict(Ticket entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

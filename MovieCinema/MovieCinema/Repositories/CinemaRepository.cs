@@ -12,7 +12,8 @@ namespace MovieCinema.Repositories
     internal class CinemaRepository:IRepository<Cinema>
     {
         SqlConnectionSingleton conn;
-        SqlConnection con; public CinemaRepository(string connectionString)
+        SqlConnection con;
+        public CinemaRepository(string connectionString)
         {
             this.conn = SqlConnectionSingleton.GetInstance();
             con = SqlConnectionSingleton.GetSingleConnetion();
@@ -82,6 +83,25 @@ namespace MovieCinema.Repositories
             return cinema;
         }
 
+        Cinema IRepository<Cinema>.GetByName(string name)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Cinemas WHERE CinemaName='{name}'", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Cinema cinema = new Cinema(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+            con.Close();
+            return cinema;
+        }
+        List<Cinema> IRepository<Cinema>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<Cinema>.HasConflict(Cinema entity)
+        {
+            throw new NotImplementedException();
+        }
 
 
     }

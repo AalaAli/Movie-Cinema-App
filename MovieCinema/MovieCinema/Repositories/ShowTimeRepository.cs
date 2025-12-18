@@ -22,6 +22,7 @@ namespace MovieCinema.Repositories
 
         void IRepository<ShowTime>.Add(ShowTime entity)
         {
+            con.Open();
             Console.WriteLine(con.State.ToString());
             SqlCommand cmd = new SqlCommand("insert into ShowTimes values(@movie_id,@hall_id,@start_time,@end_time,@price,@language); ", con);
             cmd.Parameters.AddWithValue("@movie_id", entity.GetMovieId());
@@ -76,12 +77,41 @@ namespace MovieCinema.Repositories
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand("SELECT * FROM ShowTimes", con);
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM ShowTimes WHERE ShowTimeId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             ShowTime showtime = new ShowTime(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDecimal(5), reader.GetString(6));
             con.Close();
             return showtime;
         }
+        ShowTime IRepository<ShowTime>.GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+        public bool HasConflict(ShowTime newShowTime)
+        {
+            IEnumerable<ShowTime> _showTimes = ((IRepository<ShowTime>)this).GetAll();
+            return _showTimes.Any(existing =>
+                existing.MovieId == newShowTime.MovieId &&
+                newShowTime.StartTime < existing.EndTime &&
+                newShowTime.EndTime > existing.StartTime
+            );
+        }
+        public List<ShowTime> GetByMovie(int movieId)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM ShowTimes WHERE MovieId={movieId}", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<ShowTime> showtimes = new List<ShowTime>();
+            while (reader.Read())
+            {
+                ShowTime showtime = new ShowTime(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetDateTime(3), reader.GetDateTime(4), reader.GetDecimal(5), reader.GetString(6));
+                showtimes.Add(showtime);
+            }
+            con.Close();
+            return showtimes;
+        }
+
     }
 }

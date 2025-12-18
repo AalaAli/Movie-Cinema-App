@@ -64,7 +64,7 @@ namespace MovieCinema.Repositories
             while (reader.Read())
             {
 
-                GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1),reader.GetInt32(3));
+                GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
                 genres.Add(genre);
             }
             con.Close();
@@ -77,9 +77,28 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Genres WHERE GenreId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(3));
+            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
             con.Close();
             return genre;
+        }
+        GenreComponent IRepository<GenreComponent>.GetByName(string name)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Genres WHERE GenreId={name}", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
+            con.Close();
+            return genre;
+        }
+        List<GenreComponent> IRepository<GenreComponent>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<GenreComponent>.HasConflict(GenreComponent entity)
+        {
+            throw new NotImplementedException();
         }
 
     }

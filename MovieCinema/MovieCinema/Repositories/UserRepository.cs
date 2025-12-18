@@ -20,7 +20,7 @@ namespace MovieCinema.Repositories
         }
         // Methods for CRUD operations on Actor entities would go here
         
-       public void Add(User entity)
+        void IRepository<User>.Add(User entity)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -35,7 +35,7 @@ namespace MovieCinema.Repositories
             con.Close();
             Console.WriteLine("User Added Successfully");
         }
-       public void Delete(int id)
+        void IRepository<User>.Delete(int id)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -47,7 +47,7 @@ namespace MovieCinema.Repositories
            
 
         }
-     public void Update(User entity)
+        void IRepository<User>.Update(User entity)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -63,7 +63,7 @@ namespace MovieCinema.Repositories
             Console.WriteLine($"User {entity.GetUserId()} was Updated Successfully");
 
         }
-       public IEnumerable<User> GetAll()
+        IEnumerable<User> IRepository<User>.GetAll()
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -78,7 +78,7 @@ namespace MovieCinema.Repositories
             con.Close();
             return users;
         }
-       public User GetById(int id)
+        User IRepository<User>.GetById(int id)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
@@ -89,12 +89,12 @@ namespace MovieCinema.Repositories
             con.Close();
             return user;
         }
-       public User GetByUserName(string userName)
+        User IRepository<User>.GetByName(string name)
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand($"SELECT * FROM Users WHERE UserName=@user_name", con);
-            cmd.Parameters.AddWithValue("@user_name",userName);
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Users WHERE UserName=@user_name WHERE UserName={name}", con);
+            cmd.Parameters.AddWithValue("@user_name",name);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
             User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetBoolean(5));
@@ -102,5 +102,21 @@ namespace MovieCinema.Repositories
             return user;
         }
 
+        List<User> IRepository<User>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<User>.HasConflict(User entity)
+        {
+/*            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserName=@user_name OR Email=@email", con);
+            cmd.Parameters.AddWithValue("@user_name", entity.GetUserName());
+            cmd.Parameters.AddWithValue("@email", entity.GetEmail());
+            int count = (int)cmd.ExecuteScalar();
+            con.Close();
+            return count > 0;*/
+                throw new NotImplementedException();
+        }
     }
 }

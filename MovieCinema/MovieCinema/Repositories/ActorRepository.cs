@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MovieCinema.Repositories
 {
-    internal class ActorRepository:IRepository<Actor>
+    internal class ActorRepository : IRepository<Actor>
     {
         SqlConnectionSingleton conn;
         SqlConnection con;
@@ -20,7 +20,7 @@ namespace MovieCinema.Repositories
             con.ConnectionString = connectionString;
         }
         // Methods for CRUD operations on Actor entities would go here
-       
+
         void IRepository<Actor>.Add(Actor entity)
         {
             con.Open();
@@ -66,7 +66,7 @@ namespace MovieCinema.Repositories
             List<Actor> actors = new List<Actor>();
             while (reader.Read())
             {
-    
+
                 Actor actor = new Actor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3));
                 actors.Add(actor);
             }
@@ -84,6 +84,25 @@ namespace MovieCinema.Repositories
             con.Close();
             return actor;
         }
+        Actor IRepository<Actor>.GetByName(string name)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Actors WHERE ActorName='{name}'", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Actor actor = new Actor(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3));
+            con.Close();
+            return actor;
 
+        }
+        List<Actor> IRepository<Actor>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<Actor>.HasConflict(Actor entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

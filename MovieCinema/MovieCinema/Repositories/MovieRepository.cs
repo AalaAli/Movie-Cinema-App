@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MovieCinema.Repositories
 {
-    public class MovieRepository:IRepository<Movie>
+    public class MovieRepository : IRepository<Movie>
     {
         SqlConnectionSingleton conn;
         SqlConnection con;
@@ -73,7 +73,7 @@ namespace MovieCinema.Repositories
             while (reader.Read())
             {
 
-                Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1),reader.GetString(2),reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6));
+                Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6));
                 movies.Add(movie);
             }
             con.Close();
@@ -86,9 +86,29 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Movies WHERE MovieId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6)); 
+            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6));
             con.Close();
             return movie;
+        }
+        Movie IRepository<Movie>.GetByName(string name)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"SELECT * FROM Movies WHERE Title='{name}'", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            Movie movie = new Movie(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetDecimal(6));
+            con.Close();
+            return movie;
+
+        }
+        List<Movie> IRepository<Movie>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<Movie>.HasConflict(Movie entity)
+        {
+            throw new NotImplementedException();
         }
 
     }

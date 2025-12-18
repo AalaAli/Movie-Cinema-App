@@ -76,6 +76,18 @@ namespace MovieCinema.Repositories
             con.Close();
           return seat;
         }
+        Seat IRepository<Seat>.GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+        List<Seat> IRepository<Seat>.GetByMovie(int movieId)
+        {
+            throw new NotImplementedException();
+        }
+        bool IRepository<Seat>.HasConflict(Seat entity)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }

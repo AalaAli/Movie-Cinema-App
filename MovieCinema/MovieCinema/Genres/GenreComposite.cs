@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace MovieCinema.Genres
 {
-    public class GenreGroup:GenreComponent
+    public class GenreComposite:GenreComponent
     {
         private List<GenreComponent> _genres = new List<GenreComponent>();
-        public GenreGroup() { }
-        public GenreGroup(int GnId, string GnName) : base(GnId,GnName,null)
+        public GenreComposite() { }
+        public GenreComposite(int GnId, string GnName) : base(GnId,GnName)
         {
         }
-        public void AddGenre(GenreComponent genre)
+        public void Add(GenreComponent genre)
         {
             _genres.Add(genre);
         }
@@ -31,6 +31,9 @@ namespace MovieCinema.Genres
         }
         public override bool IsLeaf() => false;
         public override int GetGenreId() => GenreId;
-        public override string GetGenreName() => GenreName;
+        public override string GetGenreName()
+        {
+            return string.Join(" / ", _genres.Select(g => g.GetGenreName()));
+        }
     }
 }

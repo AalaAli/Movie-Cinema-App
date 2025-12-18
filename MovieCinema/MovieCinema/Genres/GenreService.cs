@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,32 +10,39 @@ namespace MovieCinema.Genres
 {
     internal class GenreService
     {
-        /*        GetGenreTree()
+        private readonly IRepository<Genre> _repository;
 
-        GetLeafGenres()
+        public GenreService(IRepository<Genre> repository)
+        {
+            _repository = repository;
+        }
+        public Genre GetOrCreate(string genreName)
+        {
+            var genre = _repository.GetByName(genreName);
 
-        IsLeafGenre(id)
+            if (genre == null)
+            {
+                genre = new Genre (0,genreName);//id isn't used here because the db will assign it
+                _repository.Add(genre);
+            }
 
-        FindGenreInTree() ← يفيدكم في Search by Genre*/
-
-        IRepository<Genre> _genreRepository;
-        public GenreService(IRepository<Genre> repository) {
-            _genreRepository = repository;
+            return genre;
+        }
+        public IEnumerable<Genre> GetAllGenres()
+        {
+            return _repository.GetAll();
         }
         public void Add(Genre genre)
         {
-            _genreRepository.Add(genre);
+            _repository.Add(genre);
         }
-        public void Update(Genre genre)
-        { 
-            _genreRepository.Update(genre); 
-        }
-        public void Delete(Genre genre)
+        public void UpdateGenre(Genre genre)
         {
-            _genreRepository.Delete(genre.GetGenreId());
+            _repository.Update(genre);
         }
-
-
-
+        public void DeleteGenre(int genreId)
+        {
+            _repository.Delete(genreId);
+        }
     }
 }
