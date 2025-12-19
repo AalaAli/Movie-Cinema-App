@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MovieCinema.Users
 {
-    internal class UserService
+    public class UserService
     {
 
         private readonly IRepository<User> _userRepository;

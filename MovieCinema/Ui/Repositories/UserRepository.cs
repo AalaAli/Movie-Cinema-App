@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MovieCinema.Repositories
 {
-    internal class UserRepository:IRepository<User>
+    public class UserRepository:IRepository<User>
     {
         SqlConnectionSingleton conn;
         SqlConnection con;
