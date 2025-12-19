@@ -39,10 +39,14 @@ namespace MovieCinema.Movies
             }
             _movieRepository.Update(movie);
         }
-        public void Delete(Movie movie)
+        public void Delete(int movieId)
         {
             //Check Showtime
-            _movieRepository.Delete(movie.GetMovieId());
+            _movieRepository.Delete(movieId);
+        }
+        public Movie GetMovieById(int movieId)
+        {
+            return _movieRepository.GetById(movieId);
         }
         public Movie CloneMovie(int movieId)
         {
