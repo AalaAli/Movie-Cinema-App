@@ -117,11 +117,17 @@
     <Compile Include="LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="MainLibraryFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MainLibraryFrom.Designer.cs">
+      <DependentUpon>MainLibraryFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageMoviesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageMoviesForm.Designer.cs">
+      <DependentUpon>ManageMoviesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Movies\Movie.cs" />
     <Compile Include="Movies\MovieSearchContext.cs" />
