@@ -31,8 +31,10 @@ namespace MovieCinema.Users
         public void Register(User user)
         {
             User u= _userRepository.GetByName(user.GetUserName());
-            if (u == null)  
-                 _userRepository.Add(user);
+            if (u == null)
+            {
+                _userRepository.Add(user);
+            }
             else
                 throw new Exception("User already exists");
         }
