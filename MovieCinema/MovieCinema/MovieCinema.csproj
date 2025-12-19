@@ -5,13 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D5979E24-BE0D-438D-AAE5-D8E01C87C0D9}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>MovieCinema</RootNamespace>
     <AssemblyName>MovieCinema</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,9 +33,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Krypton.Toolkit, Version=100.25.11.328, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Toolkit.100.25.11.328\lib\net472\Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,13 +56,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\Actor.cs" />
+    <Compile Include="Actors\ActorService.cs" />
     <Compile Include="CinemaFacad\CinemaFacade.cs" />
     <Compile Include="Cinema\Cinema.cs" />
     <Compile Include="Genres\Genre.cs" />
     <Compile Include="Genres\GenreComponent.cs" />
     <Compile Include="Genres\GenreComposite.cs" />
     <Compile Include="Genres\GenreService.cs" />
-    <Compile Include="Hall\Hall.cs" />
+    <Compile Include="Halls\Hall.cs" />
+    <Compile Include="Halls\HallService.cs" />
+    <Compile Include="LogInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogInForm.Designer.cs">
+      <DependentUpon>LogInForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Movies\MovieSearchContext.cs" />
     <Compile Include="Movies\MovieService.cs" />
     <Compile Include="Movies\SearchByActorStrategy.cs" />
@@ -83,8 +103,9 @@
     <Compile Include="ShowTimes\IShowTimeBuilder.cs" />
     <Compile Include="ShowTimes\ShowTime.cs" />
     <Compile Include="SqlConectionSingleton\SqlConnection.cs" />
-    <Compile Include="Ticket\Ticket.cs" />
-    <Compile Include="Ticket\TicketService.cs" />
+    <Compile Include="Tickets\TicketProxy.cs" />
+    <Compile Include="Tickets\Ticket.cs" />
+    <Compile Include="Tickets\TicketService.cs" />
     <Compile Include="Users\AdminObserver.cs" />
     <Compile Include="Users\Event.cs" />
     <Compile Include="Users\IObserver.cs" />
@@ -95,7 +116,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="LogInForm.resx">
+      <DependentUpon>LogInForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
