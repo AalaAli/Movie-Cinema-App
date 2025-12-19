@@ -16,5 +16,12 @@ namespace Ui
         {
             InitializeComponent();
         }
+
+        private void ManageShowTimes_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'moviesDBDataSet1.ShowTimes' table. You can move, or remove it, as needed.
+            this.showTimesTableAdapter.Fill(this.moviesDBDataSet1.ShowTimes);
+
+        }
     }
 }

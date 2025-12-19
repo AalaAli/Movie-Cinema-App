@@ -15,18 +15,14 @@ namespace MovieCinema.ShowTimes
             _builder = builder;
         }
 
-        public ShowTime ConstructShowTime(
-            int movieId,
-            int hallId,
-            DateTime startTime,
-            DateTime endTime)
+        public ShowTime ConstructShowTime(int movieId, int hallId, DateTime startTime, DateTime endTime,string language)
         {
             _builder.SetMovie(movieId);
             _builder.SetHall(hallId);
             _builder.SetStartTime(startTime);
             _builder.SetEndTime(endTime);
             _builder.SetPrice();
-            _builder.SetLanguage();
+            _builder.SetLanguage(language);
 
             return _builder.GetShowTime();
         }

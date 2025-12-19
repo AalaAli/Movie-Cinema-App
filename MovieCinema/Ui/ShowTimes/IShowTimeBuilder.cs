@@ -13,7 +13,7 @@ namespace MovieCinema.ShowTimes
         void SetStartTime(DateTime startTime);
         void SetEndTime(DateTime endTime);
         void SetPrice();
-        void SetLanguage();
+        void SetLanguage(string language);
 
         ShowTime GetShowTime();
     }

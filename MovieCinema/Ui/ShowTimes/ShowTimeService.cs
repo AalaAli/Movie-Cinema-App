@@ -19,17 +19,23 @@ namespace MovieCinema.ShowTimes
 
         public void CreateShowTime(int movieId,int hallId, DateTime start, DateTime end, decimal price,string language)
         {
-
-            var showTime = new ShowTime
+            IShowTimeBuilder showTimeBuilder;
+            if (price==10m)
             {
-                MovieId = movieId,
-                HallId = hallId,
-                StartTime = start,
-                EndTime = end,
-                Price = price,
-                Language = language
+                 showTimeBuilder = new TwoDShowTimeBuilder();
+            }
+            else if(price==15m)
+            {
+                 showTimeBuilder= new ThreeDShowTimeBuilder();
+            }
+            else
+            {
+                 showTimeBuilder = new MaxShowTimeBuilder();
 
-            };
+            }
+            ShowTimeDirector showTimeDirector = new ShowTimeDirector(showTimeBuilder);
+            ShowTime showTime = showTimeDirector.ConstructShowTime(movieId,hallId,start,end,language);
+ 
 
             if (_repository.HasConflict(showTime))
             {

@@ -40,9 +40,9 @@ namespace MovieCinema.ShowTimes
             _showTime.Price = 20m;
         }
 
-        public void SetLanguage()
+        public void SetLanguage(string language)
         {
-            _showTime.Language = "EN";
+            _showTime.Language = language;
         }
 
         public ShowTime GetShowTime()

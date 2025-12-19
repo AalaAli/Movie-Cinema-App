@@ -32,34 +32,44 @@
             this.moviesTableAdapter = new Ui.MoviesDBDataSetTableAdapters.MoviesTableAdapter();
             this.moviesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.moviesDBDataSet = new Ui.MoviesDBDataSet();
-            this.Rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PosterPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReleaseYear = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDuration = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtPosterPath = new System.Windows.Forms.RichTextBox();
             this.txtReleaseYear = new System.Windows.Forms.RichTextBox();
-            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.txtTitle = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableMovie = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.moviesDBDataSet1 = new Ui.MoviesDBDataSet1();
+            this.showTimesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.showTimesTableAdapter = new Ui.MoviesDBDataSet1TableAdapters.ShowTimesTableAdapter();
+            this.ShowTimeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HallId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Language = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.moviesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableMovie)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showTimesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // moviesTableAdapter
@@ -76,46 +86,14 @@
             this.moviesDBDataSet.DataSetName = "MoviesDBDataSet";
             this.moviesDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // Rating
-            // 
-            this.Rating.DataPropertyName = "Rating";
-            this.Rating.HeaderText = "Rating";
-            this.Rating.MinimumWidth = 6;
-            this.Rating.Name = "Rating";
-            this.Rating.Width = 125;
-            // 
-            // PosterPath
-            // 
-            this.PosterPath.DataPropertyName = "PosterPath";
-            this.PosterPath.HeaderText = "PosterPath";
-            this.PosterPath.MinimumWidth = 6;
-            this.PosterPath.Name = "PosterPath";
-            this.PosterPath.Width = 125;
-            // 
-            // Duration
-            // 
-            this.Duration.DataPropertyName = "DurationMinutes";
-            this.Duration.HeaderText = "DurationMinutes";
-            this.Duration.MinimumWidth = 6;
-            this.Duration.Name = "Duration";
-            this.Duration.Width = 125;
-            // 
-            // ReleaseYear
-            // 
-            this.ReleaseYear.DataPropertyName = "ReleaseYear";
-            this.ReleaseYear.HeaderText = "ReleaseYear";
-            this.ReleaseYear.MinimumWidth = 6;
-            this.ReleaseYear.Name = "ReleaseYear";
-            this.ReleaseYear.Width = 125;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(41, 237);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 17);
+            this.label7.Size = new System.Drawing.Size(65, 17);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Duration (mins)";
+            this.label7.Text = "End Time";
             // 
             // txtDuration
             // 
@@ -130,91 +108,71 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(41, 154);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 17);
+            this.label6.Size = new System.Drawing.Size(71, 17);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Poster Path";
+            this.label6.Text = "Start Time";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(41, 302);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 17);
+            this.label5.Size = new System.Drawing.Size(37, 17);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Description";
+            this.label5.Text = "Price";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(36, 89);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 17);
+            this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Release Year";
+            this.label4.Text = "Hall Id";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(36, 26);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 17);
+            this.label3.Size = new System.Drawing.Size(55, 17);
             this.label3.TabIndex = 7;
-            this.label3.Text = "title";
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.Width = 125;
-            // 
-            // Title
-            // 
-            this.Title.DataPropertyName = "Title";
-            this.Title.HeaderText = "Title";
-            this.Title.MinimumWidth = 6;
-            this.Title.Name = "Title";
-            this.Title.Width = 125;
-            // 
-            // MovieId
-            // 
-            this.MovieId.DataPropertyName = "MovieId";
-            this.MovieId.HeaderText = "MovieId";
-            this.MovieId.MinimumWidth = 6;
-            this.MovieId.Name = "MovieId";
-            this.MovieId.ReadOnly = true;
-            this.MovieId.Width = 125;
+            this.label3.Text = "MovieId";
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(147, 420);
+            this.btnUpdate.Location = new System.Drawing.Point(148, 466);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(99, 37);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(270, 420);
+            this.btnDelete.Location = new System.Drawing.Point(271, 466);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(108, 37);
+            this.btnDelete.Size = new System.Drawing.Size(91, 37);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(16, 420);
+            this.btnAdd.Location = new System.Drawing.Point(39, 466);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(116, 37);
+            this.btnAdd.Size = new System.Drawing.Size(85, 37);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.listBox1);
+            this.panel1.Controls.Add(this.radioButton3);
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtDuration);
             this.panel1.Controls.Add(this.label6);
@@ -226,9 +184,8 @@
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.txtPosterPath);
             this.panel1.Controls.Add(this.txtReleaseYear);
-            this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.txtTitle);
-            this.panel1.Location = new System.Drawing.Point(14, 45);
+            this.panel1.Location = new System.Drawing.Point(12, 73);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(405, 520);
             this.panel1.TabIndex = 6;
@@ -249,14 +206,6 @@
             this.txtReleaseYear.TabIndex = 3;
             this.txtReleaseYear.Text = "";
             // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(39, 324);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(323, 80);
-            this.txtDescription.TabIndex = 2;
-            this.txtDescription.Text = "";
-            // 
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(39, 46);
@@ -268,9 +217,9 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.tableMovie);
-            this.panel2.Location = new System.Drawing.Point(446, 45);
+            this.panel2.Location = new System.Drawing.Point(450, 73);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(715, 498);
+            this.panel2.Size = new System.Drawing.Size(715, 520);
             this.panel2.TabIndex = 7;
             // 
             // tableMovie
@@ -278,37 +227,176 @@
             this.tableMovie.AutoGenerateColumns = false;
             this.tableMovie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableMovie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ShowTimeId,
             this.MovieId,
-            this.Title,
-            this.Description,
-            this.ReleaseYear,
-            this.Duration,
-            this.PosterPath,
-            this.Rating});
-            this.tableMovie.DataSource = this.moviesBindingSource;
-            this.tableMovie.Location = new System.Drawing.Point(19, 46);
+            this.HallId,
+            this.StartTime,
+            this.EndTime,
+            this.Price,
+            this.Language});
+            this.tableMovie.DataSource = this.showTimesBindingSource;
+            this.tableMovie.Location = new System.Drawing.Point(3, 26);
             this.tableMovie.Name = "tableMovie";
             this.tableMovie.RowHeadersWidth = 51;
             this.tableMovie.RowTemplate.Height = 26;
-            this.tableMovie.Size = new System.Drawing.Size(670, 379);
+            this.tableMovie.Size = new System.Drawing.Size(693, 379);
             this.tableMovie.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = " Show Times";
+            // 
+            // moviesDBDataSet1
+            // 
+            this.moviesDBDataSet1.DataSetName = "MoviesDBDataSet1";
+            this.moviesDBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // showTimesBindingSource
+            // 
+            this.showTimesBindingSource.DataMember = "ShowTimes";
+            this.showTimesBindingSource.DataSource = this.moviesDBDataSet1;
+            // 
+            // showTimesTableAdapter
+            // 
+            this.showTimesTableAdapter.ClearBeforeFill = true;
+            // 
+            // ShowTimeId
+            // 
+            this.ShowTimeId.DataPropertyName = "ShowTimeId";
+            this.ShowTimeId.HeaderText = "ShowTimeId";
+            this.ShowTimeId.MinimumWidth = 6;
+            this.ShowTimeId.Name = "ShowTimeId";
+            this.ShowTimeId.ReadOnly = true;
+            this.ShowTimeId.Width = 125;
+            // 
+            // MovieId
+            // 
+            this.MovieId.DataPropertyName = "MovieId";
+            this.MovieId.HeaderText = "MovieId";
+            this.MovieId.MinimumWidth = 6;
+            this.MovieId.Name = "MovieId";
+            this.MovieId.Width = 125;
+            // 
+            // HallId
+            // 
+            this.HallId.DataPropertyName = "HallId";
+            this.HallId.HeaderText = "HallId";
+            this.HallId.MinimumWidth = 6;
+            this.HallId.Name = "HallId";
+            this.HallId.Width = 125;
+            // 
+            // StartTime
+            // 
+            this.StartTime.DataPropertyName = "StartTime";
+            this.StartTime.HeaderText = "StartTime";
+            this.StartTime.MinimumWidth = 6;
+            this.StartTime.Name = "StartTime";
+            this.StartTime.Width = 125;
+            // 
+            // EndTime
+            // 
+            this.EndTime.DataPropertyName = "EndTime";
+            this.EndTime.HeaderText = "EndTime";
+            this.EndTime.MinimumWidth = 6;
+            this.EndTime.Name = "EndTime";
+            this.EndTime.Width = 125;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.Width = 125;
+            // 
+            // Language
+            // 
+            this.Language.DataPropertyName = "Language";
+            this.Language.HeaderText = "Language";
+            this.Language.MinimumWidth = 6;
+            this.Language.Name = "Language";
+            this.Language.Width = 125;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(41, 360);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(68, 17);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Language";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(44, 322);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(57, 21);
+            this.radioButton1.TabIndex = 15;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "10 $";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(169, 322);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(57, 21);
+            this.radioButton2.TabIndex = 16;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "15 $";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(305, 322);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(57, 21);
+            this.radioButton3.TabIndex = 17;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "20 $";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Items.AddRange(new object[] {
+            "English",
+            "Arabic"});
+            this.listBox1.Location = new System.Drawing.Point(39, 380);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(226, 52);
+            this.listBox1.TabIndex = 18;
             // 
             // ManageShowTimes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 622);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "ManageShowTimes";
             this.Text = "ManageShowTimes";
+            this.Load += new System.EventHandler(this.ManageShowTimes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.moviesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableMovie)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.showTimesBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -317,28 +405,36 @@
         private MoviesDBDataSetTableAdapters.MoviesTableAdapter moviesTableAdapter;
         private System.Windows.Forms.BindingSource moviesBindingSource;
         private MoviesDBDataSet moviesDBDataSet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rating;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PosterPath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReleaseYear;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RichTextBox txtDuration;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MovieId;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox txtPosterPath;
         private System.Windows.Forms.RichTextBox txtReleaseYear;
-        private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.RichTextBox txtTitle;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView tableMovie;
+        private System.Windows.Forms.Label label1;
+        private MoviesDBDataSet1 moviesDBDataSet1;
+        private System.Windows.Forms.BindingSource showTimesBindingSource;
+        private MoviesDBDataSet1TableAdapters.ShowTimesTableAdapter showTimesTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShowTimeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MovieId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HallId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Language;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
