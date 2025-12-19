@@ -12,7 +12,7 @@ namespace MovieCinema.Users
 
         private readonly IRepository<User> _userRepository;
 
-        public UserService(UserRepository repository)
+        public UserService(IRepository<User> repository)
         {
             _userRepository = repository;
         }

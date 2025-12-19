@@ -1,4 +1,7 @@
-﻿using MovieCinema.SqlConectionSingleton;
+﻿using MovieCinema.Genres;
+using MovieCinema.Movies;
+using MovieCinema.Users;
+using MovieCinema.SqlConectionSingleton;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -89,17 +92,30 @@ namespace MovieCinema.Repositories
             con.Close();
             return user;
         }
-        User IRepository<User>.GetByName(string name)//get by email
+        // In UserRepository.cs, FIX THIS METHOD:
+        User IRepository<User>.GetByName(string name) // Actually gets by email
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName=@user_name WHERE Email=@email", con);
+
+            // FIXED: This was broken - wrong SQL syntax
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE Email = @email", con);
             cmd.Parameters.AddWithValue("@email", name);
+
             SqlDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            User user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetBoolean(5));
-            con.Close();
-            return user;
+
+            if (reader.Read())
+            {
+                User user = new User(reader.GetInt32(0),reader.GetString(1),reader.GetString(2),reader.GetString(3),reader.GetString(4),reader.GetBoolean(5)
+                );
+                con.Close();
+                return user;
+            }
+            else
+            {
+                con.Close();
+                return null; // No user found
+            }
         }
 
         List<User> IRepository<User>.GetByMovie(int movieId)

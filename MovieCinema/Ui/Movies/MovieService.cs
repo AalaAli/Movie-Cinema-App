@@ -11,7 +11,7 @@ namespace MovieCinema.Movies
     public class MovieService
     {
         IRepository<Movie> _movieRepository;
-        public MovieService(MovieRepository repository)
+        public MovieService(IRepository<Movie> repository)
         {
             _movieRepository = repository;
         }
