@@ -34,7 +34,7 @@ namespace Ui
             lblTitle.ForeColor = Color.FromArgb(255, 193, 7); // Gold cinema color
             lblTitle.Font = new Font("Segoe UI", 18f, FontStyle.Bold);
 
-            btnLogin.BackColor = Color.FromArgb(40, 123, 222);
+            btnLogin.BackColor = Color.FromArgb(128,0,0);
             btnLogin.ForeColor = Color.White;
             btnLogin.FlatStyle = FlatStyle.Flat;
             btnLogin.FlatAppearance.BorderSize = 0;
@@ -46,8 +46,8 @@ namespace Ui
             linkRegister.ActiveLinkColor = Color.FromArgb(66, 165, 245);
 
             // Add hover effects
-            btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = Color.FromArgb(30, 113, 202);
-            btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = Color.FromArgb(40, 123, 222);
+            btnLogin.MouseEnter += (s, e) => btnLogin.BackColor = Color.FromArgb(130, 2, 2);
+            btnLogin.MouseLeave += (s, e) => btnLogin.BackColor = Color.FromArgb(130, 2, 2);
         }
 
         private void ApplyControlThemes()
@@ -137,6 +137,11 @@ namespace Ui
             RegisterForm registerForm = new RegisterForm();
             registerForm.ShowDialog();
             this.Close();
+        }
+
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

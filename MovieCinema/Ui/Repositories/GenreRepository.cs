@@ -26,13 +26,18 @@ namespace MovieCinema.Repositories
         void IRepository<GenreComponent>.Add(GenreComponent entity)
         {
             con.Open();
-            Console.WriteLine(con.State.ToString());
-
-            SqlCommand cmd = new SqlCommand("insert into Genres values(@genre_name); ", con);
+            SqlCommand cmd= new SqlCommand();
+            if (entity.GetParentId().GetValueOrDefault()==0)
+            {
+                cmd = new SqlCommand(" insert  into Genres (GenreName) values(@genre_name); ", con);
+            }
+            else
+            {  cmd = new SqlCommand("insert  into Genres values(@genre_name,@parent_Id); ", con);
+                cmd.Parameters.AddWithValue("@parent_Id", entity.GetParentId());
+            }
             cmd.Parameters.AddWithValue("@genre_name", entity.GetGenreName());
             cmd.ExecuteNonQuery();
             con.Close();
-            Console.WriteLine("Genre Added Successfully");
 
         }
         void IRepository<GenreComponent>.Delete(int id)
@@ -42,18 +47,15 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"DELETE FROM Genres WHERE GenreId={id}", con);
             cmd.ExecuteNonQuery();
             con.Close();
-            Console.WriteLine($"Genre {id} was Deleted Successfully");
         }
         void IRepository<GenreComponent>.Update(GenreComponent entity)
         {
             con.Open();
-            Console.WriteLine(con.State.ToString());
-
-            SqlCommand cmd = new SqlCommand($"UPDATE Genres SET GenreName = @genre_name WHERE GenreId={entity.GetGenreId()}", con);
+            SqlCommand cmd = new SqlCommand($"UPDATE Genres SET GenreName = @genre_name, ParentId=@paretnId WHERE GenreId={entity.GetGenreId()}", con);
             cmd.Parameters.AddWithValue("@genre_name", entity.GetGenreName());
+            cmd.Parameters.AddWithValue("@paretnId", entity.GetParentId());
             cmd.ExecuteNonQuery();
             con.Close();
-            Console.WriteLine($"Genre {entity.GetGenreId()} was Updated Successfully");
         }
         IEnumerable<GenreComponent> IRepository<GenreComponent>.GetAll()
         {
@@ -64,8 +66,7 @@ namespace MovieCinema.Repositories
             List<GenreComponent> genres = new List<GenreComponent>();
             while (reader.Read())
             {
-
-                GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
+                GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1),reader.GetInt32(2));
                 genres.Add(genre);
             }
             con.Close();
@@ -78,7 +79,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Genres WHERE GenreId={id}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
+            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2));
             con.Close();
             return genre;
         }
@@ -89,7 +90,7 @@ namespace MovieCinema.Repositories
             SqlCommand cmd = new SqlCommand($"SELECT * FROM Genres WHERE GenreId={name}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             reader.Read();
-            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1));
+            GenreComponent genre = new Genre(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2));
             con.Close();
             return genre;
         }

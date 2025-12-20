@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.btnManageGenre = new System.Windows.Forms.Button();
             this.lblAdminInfo = new System.Windows.Forms.Label();
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnManageShowTimes = new System.Windows.Forms.Button();
             this.btnManageMovies = new System.Windows.Forms.Button();
-            this.btnManageGenre = new System.Windows.Forms.Button();
             this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,6 +53,21 @@
             this.panelContainer.Padding = new System.Windows.Forms.Padding(20);
             this.panelContainer.Size = new System.Drawing.Size(500, 450);
             this.panelContainer.TabIndex = 0;
+            // 
+            // btnManageGenre
+            // 
+            this.btnManageGenre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.btnManageGenre.FlatAppearance.BorderSize = 0;
+            this.btnManageGenre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManageGenre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnManageGenre.ForeColor = System.Drawing.Color.White;
+            this.btnManageGenre.Location = new System.Drawing.Point(50, 326);
+            this.btnManageGenre.Name = "btnManageGenre";
+            this.btnManageGenre.Size = new System.Drawing.Size(400, 60);
+            this.btnManageGenre.TabIndex = 6;
+            this.btnManageGenre.Text = "MANAGE GENRES";
+            this.btnManageGenre.UseVisualStyleBackColor = false;
+            this.btnManageGenre.Click += new System.EventHandler(this.btnManageGenre_Click);
             // 
             // lblAdminInfo
             // 
@@ -119,20 +134,6 @@
             this.btnManageMovies.Text = "MANAGE MOVIES";
             this.btnManageMovies.UseVisualStyleBackColor = false;
             this.btnManageMovies.Click += new System.EventHandler(this.btnManageMovies_Click);
-            // 
-            // btnManageGenre
-            // 
-            this.btnManageGenre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
-            this.btnManageGenre.FlatAppearance.BorderSize = 0;
-            this.btnManageGenre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageGenre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnManageGenre.ForeColor = System.Drawing.Color.White;
-            this.btnManageGenre.Location = new System.Drawing.Point(50, 326);
-            this.btnManageGenre.Name = "btnManageGenre";
-            this.btnManageGenre.Size = new System.Drawing.Size(400, 60);
-            this.btnManageGenre.TabIndex = 6;
-            this.btnManageGenre.Text = "MANAGE GENRES";
-            this.btnManageGenre.UseVisualStyleBackColor = false;
             // 
             // AdminForm
             // 

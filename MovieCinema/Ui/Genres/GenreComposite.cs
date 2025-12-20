@@ -10,7 +10,7 @@ namespace MovieCinema.Genres
     {
         private List<GenreComponent> _genres = new List<GenreComponent>();
         public GenreComposite() { }
-        public GenreComposite(int GnId, string GnName) : base(GnId,GnName)
+        public GenreComposite(int GnId, string GnName, int ?parentId) : base(GnId,GnName, parentId)
         {
         }
         public void Add(GenreComponent genre)
@@ -31,6 +31,8 @@ namespace MovieCinema.Genres
         }
         public override bool IsLeaf() => false;
         public override int GetGenreId() => GenreId;
+        public override int?GetParentId() => ParentId;
+
         public override string GetGenreName()
         {
             return string.Join(" / ", _genres.Select(g => g.GetGenreName()));

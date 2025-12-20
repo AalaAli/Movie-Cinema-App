@@ -123,6 +123,12 @@
     <Compile Include="MainLibraryFrom.Designer.cs">
       <DependentUpon>MainLibraryFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageGenres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageGenres.Designer.cs">
+      <DependentUpon>ManageGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageMoviesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MoviesDBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesDBDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesDBDataSet3.xsd</DependentUpon>
     </Compile>
     <Compile Include="Movies\Movie.cs" />
     <Compile Include="Movies\MovieSearchContext.cs" />
@@ -204,6 +215,9 @@
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageGenres.resx">
+      <DependentUpon>ManageGenres.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManageMoviesForm.resx">
       <DependentUpon>ManageMoviesForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +269,17 @@
     </None>
     <None Include="MoviesDBDataSet2.xss">
       <DependentUpon>MoviesDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MoviesDBDataSet3.xsc">
+      <DependentUpon>MoviesDBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="MoviesDBDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MoviesDBDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MoviesDBDataSet3.xss">
+      <DependentUpon>MoviesDBDataSet3.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

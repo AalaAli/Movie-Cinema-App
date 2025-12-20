@@ -39,7 +39,8 @@ namespace Ui
 
             // Style buttons with different colors for different actions
             StyleButton(btnManageMovies, Color.FromArgb(128, 0, 0)); 
-            StyleButton(btnManageShowTimes, Color.FromArgb(40, 167, 69)); 
+            StyleButton(btnManageShowTimes, Color.FromArgb(40, 167, 69));
+            StyleButton(btnManageGenre, Color.FromArgb(128, 0, 0));
 
             // Style admin info labels if they exist
             if (lblAdminInfo != null)
@@ -124,6 +125,12 @@ namespace Ui
             this.Close();
         }
 
-
+        private void btnManageGenre_Click(object sender, EventArgs e)
+        {
+            ManageGenres manageGenres = new ManageGenres();
+            this.Hide();
+            manageGenres.ShowDialog();
+            this.Close();
+        }
     }
 }

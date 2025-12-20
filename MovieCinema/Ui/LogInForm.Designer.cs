@@ -32,9 +32,9 @@
             this.lblSubtitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.RichTextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkRegister = new System.Windows.Forms.LinkLabel();
             this.panelContainer.SuspendLayout();
@@ -44,12 +44,12 @@
             // 
             this.panelContainer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(35)))));
+            this.panelContainer.Controls.Add(this.label1);
             this.panelContainer.Controls.Add(this.lblSubtitle);
             this.panelContainer.Controls.Add(this.lblTitle);
             this.panelContainer.Controls.Add(this.label2);
-            this.panelContainer.Controls.Add(this.txtEmail);
-            this.panelContainer.Controls.Add(this.label1);
             this.panelContainer.Controls.Add(this.txtPassword);
+            this.panelContainer.Controls.Add(this.txtEmail);
             this.panelContainer.Controls.Add(this.btnLogin);
             this.panelContainer.Controls.Add(this.linkRegister);
             this.panelContainer.Location = new System.Drawing.Point(213, 42);
@@ -57,6 +57,7 @@
             this.panelContainer.Padding = new System.Windows.Forms.Padding(20);
             this.panelContainer.Size = new System.Drawing.Size(553, 472);
             this.panelContainer.TabIndex = 6;
+            this.panelContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
             // 
             // lblSubtitle
             // 
@@ -84,11 +85,35 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.label2.Location = new System.Drawing.Point(84, 129);
+            this.label2.Location = new System.Drawing.Point(93, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 21);
             this.label2.TabIndex = 3;
             this.label2.Text = "Email";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.txtPassword.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtPassword.Location = new System.Drawing.Point(88, 229);
+            this.txtPassword.Multiline = false;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(340, 32);
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            this.label1.Location = new System.Drawing.Point(93, 215);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 21);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Password";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtEmail
             // 
@@ -96,36 +121,12 @@
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.txtEmail.ForeColor = System.Drawing.Color.White;
-            this.txtEmail.Location = new System.Drawing.Point(84, 149);
+            this.txtEmail.Location = new System.Drawing.Point(88, 142);
             this.txtEmail.Multiline = false;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(340, 32);
-            this.txtEmail.TabIndex = 1;
+            this.txtEmail.TabIndex = 0;
             this.txtEmail.Text = "";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.label1.Location = new System.Drawing.Point(84, 194);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 21);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Password";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
-            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(84, 214);
-            this.txtPassword.Multiline = false;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(340, 32);
-            this.txtPassword.TabIndex = 0;
-            this.txtPassword.Text = "";
             // 
             // btnLogin
             // 
@@ -181,9 +182,9 @@
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RichTextBox txtEmail;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox txtPassword;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox txtEmail;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkRegister;
     }

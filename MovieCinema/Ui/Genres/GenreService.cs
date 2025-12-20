@@ -10,33 +10,33 @@ namespace MovieCinema.Genres
 {
     internal class GenreService
     {
-        private readonly IRepository<Genre> _repository;
+        private readonly IRepository<GenreComponent> _repository;
 
-        public GenreService(IRepository<Genre> repository)
+        public GenreService(IRepository<GenreComponent> repository)
         {
             _repository = repository;
         }
-        public Genre GetOrCreate(string genreName)
+        public GenreComponent GetOrCreate(string genreName,int parentId)
         {
             var genre = _repository.GetByName(genreName);
 
             if (genre == null)
             {
-                genre = new Genre (0,genreName);//id isn't used here because the db will assign it
+                genre = new Genre (0,genreName,parentId);//id isn't used here because the db will assign it
                 _repository.Add(genre);
             }
 
             return genre;
         }
-        public IEnumerable<Genre> GetAllGenres()
+        public IEnumerable<GenreComponent> GetAllGenres()
         {
             return _repository.GetAll();
         }
-        public void Add(Genre genre)
+        public void Add(GenreComponent genre)
         {
             _repository.Add(genre);
         }
-        public void UpdateGenre(Genre genre)
+        public void UpdateGenre(GenreComponent genre)
         {
             _repository.Update(genre);
         }

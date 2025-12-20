@@ -140,8 +140,7 @@ namespace Ui
             // Convert releaseYear and duration to integers as required by the Movie constructor
             if (!int.TryParse(txtReleaseYear.Text, out int releaseYear))
             {
-                MessageBox.Show("Invalid release year. Please enter a valid number.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid release year. Please enter a valid number.", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

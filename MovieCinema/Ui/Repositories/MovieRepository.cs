@@ -120,7 +120,7 @@ namespace MovieCinema.Repositories
             List<GenreComponent>  genres = new List<GenreComponent>();
             while (reader.Read())
             { 
-                GenreComponent genre = new Genre(0,reader.GetString(0));
+                GenreComponent genre = new Genre(0,reader.GetString(1), reader.GetInt32(2));
                 genres.Add(genre);
 
             }
