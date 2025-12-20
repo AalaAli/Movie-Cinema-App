@@ -1,4 +1,5 @@
 ﻿using MovieCinema.Genres;
+using MovieCinema.Movies;
 using MovieCinema.Seats;
 using MovieCinema.SqlConectionSingleton;
 using System;
@@ -88,6 +89,9 @@ namespace MovieCinema.Repositories
         {
             throw new NotImplementedException();
         }
-
+        List<GenreComponent> IRepository<Seat>.GetGenresByMovieId(int movieId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

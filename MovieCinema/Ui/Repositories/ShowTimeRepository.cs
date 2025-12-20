@@ -1,11 +1,13 @@
-﻿using MovieCinema.SqlConectionSingleton;
+﻿using MovieCinema.Genres;
+using MovieCinema.Movies;
+using MovieCinema.ShowTimes;
+using MovieCinema.SqlConectionSingleton;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MovieCinema.ShowTimes;
 namespace MovieCinema.Repositories
 {
     internal class ShowTimeRepository:IRepository<ShowTime>
@@ -113,6 +115,10 @@ namespace MovieCinema.Repositories
             }
             con.Close();
             return showtimes;
+        }
+        List<GenreComponent> IRepository<ShowTime>.GetGenresByMovieId(int movieId)
+        {
+            throw new NotImplementedException();
         }
 
     }

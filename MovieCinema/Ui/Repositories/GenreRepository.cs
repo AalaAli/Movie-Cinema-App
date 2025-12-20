@@ -1,5 +1,6 @@
 ﻿using MovieCinema.Actors;
 using MovieCinema.Genres;
+using MovieCinema.Movies;
 using MovieCinema.SqlConectionSingleton;
 using System;
 using System.Collections.Generic;
@@ -100,6 +101,9 @@ namespace MovieCinema.Repositories
         {
             throw new NotImplementedException();
         }
-
+        List<GenreComponent> IRepository<GenreComponent>.GetGenresByMovieId(int movieId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

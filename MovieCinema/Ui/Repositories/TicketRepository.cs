@@ -1,4 +1,6 @@
-﻿using MovieCinema.SqlConectionSingleton;
+﻿using MovieCinema.Genres;
+using MovieCinema.Movies;
+using MovieCinema.SqlConectionSingleton;
 using MovieCinema.Tickets;
 using System;
 using System.Collections.Generic;
@@ -96,6 +98,11 @@ namespace MovieCinema.Repositories
             throw new NotImplementedException();
         }
         bool IRepository<Ticket>.HasConflict(Ticket entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<GenreComponent> IRepository<Ticket>.GetGenresByMovieId(int movieId)
         {
             throw new NotImplementedException();
         }

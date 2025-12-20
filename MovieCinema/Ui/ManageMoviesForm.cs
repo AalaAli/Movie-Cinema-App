@@ -41,6 +41,12 @@ namespace Ui
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "Cinema Library - Manage Movies";
 
+
+            // Style title label
+            label1.ForeColor = Color.FromArgb(255, 193, 7);
+            label1.Font = new Font("Segoe UI", 18f, FontStyle.Bold);
+            label1.Text = "MANAGE MOVIES";
+
             // Apply styles to all controls
             ApplyControlThemes();
 
@@ -53,6 +59,7 @@ namespace Ui
             StyleButton(btnUpdate, Color.FromArgb(255, 193, 7));
             StyleButton(btnDelete, Color.FromArgb(220, 53, 69));
             StyleButton(btnClone, Color.FromArgb(128, 128, 128));
+            StyleButton(btnBack, Color.FromArgb(15, 15, 20));
 
 
             // Style labels
@@ -303,6 +310,18 @@ namespace Ui
             txtPosterPath.Text = "";
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
+
+  
+        private void btnBack_Click_1(object sender, EventArgs e)
+        {
+            AdminForm adminForm = new AdminForm();
+            this.Hide();
+            adminForm.ShowDialog();
+            this.Close();
+        }
     }
 }

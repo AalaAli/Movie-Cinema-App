@@ -134,5 +134,9 @@ namespace MovieCinema.Repositories
             return count > 0;*/
                 throw new NotImplementedException();
         }
+        List<GenreComponent> IRepository<User>.GetGenresByMovieId(int movieId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

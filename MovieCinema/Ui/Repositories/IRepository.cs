@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieCinema.Genres;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace MovieCinema.Repositories
         void Update(T entity);
         void Delete(int id);
         List<T> GetByMovie(int movieId);
-
+        List<GenreComponent> GetGenresByMovieId(int movieId);
         bool HasConflict(T entity);
 
     }

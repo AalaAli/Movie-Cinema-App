@@ -1,12 +1,13 @@
 ﻿using MovieCinema.Actors;
 using MovieCinema.Genres;
+using MovieCinema.Movies;
+using MovieCinema.SqlConectionSingleton;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MovieCinema.SqlConectionSingleton;
 namespace MovieCinema.Repositories
 {
     public class HallRepository:IRepository<Hall>
@@ -105,7 +106,9 @@ namespace MovieCinema.Repositories
         {
             throw new NotImplementedException();
         }
-
-
+        List<GenreComponent> IRepository<Hall>.GetGenresByMovieId(int movieId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

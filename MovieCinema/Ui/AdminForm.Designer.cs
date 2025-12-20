@@ -34,6 +34,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnManageShowTimes = new System.Windows.Forms.Button();
             this.btnManageMovies = new System.Windows.Forms.Button();
+            this.btnManageGenre = new System.Windows.Forms.Button();
             this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +42,7 @@
             // 
             this.panelContainer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(35)))));
+            this.panelContainer.Controls.Add(this.btnManageGenre);
             this.panelContainer.Controls.Add(this.lblAdminInfo);
             this.panelContainer.Controls.Add(this.lblSubtitle);
             this.panelContainer.Controls.Add(this.lblTitle);
@@ -57,7 +59,7 @@
             this.lblAdminInfo.AutoSize = true;
             this.lblAdminInfo.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblAdminInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(200)))));
-            this.lblAdminInfo.Location = new System.Drawing.Point(124, 353);
+            this.lblAdminInfo.Location = new System.Drawing.Point(122, 407);
             this.lblAdminInfo.Name = "lblAdminInfo";
             this.lblAdminInfo.Size = new System.Drawing.Size(232, 23);
             this.lblAdminInfo.TabIndex = 5;
@@ -118,6 +120,20 @@
             this.btnManageMovies.UseVisualStyleBackColor = false;
             this.btnManageMovies.Click += new System.EventHandler(this.btnManageMovies_Click);
             // 
+            // btnManageGenre
+            // 
+            this.btnManageGenre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.btnManageGenre.FlatAppearance.BorderSize = 0;
+            this.btnManageGenre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManageGenre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnManageGenre.ForeColor = System.Drawing.Color.White;
+            this.btnManageGenre.Location = new System.Drawing.Point(50, 326);
+            this.btnManageGenre.Name = "btnManageGenre";
+            this.btnManageGenre.Size = new System.Drawing.Size(400, 60);
+            this.btnManageGenre.TabIndex = 6;
+            this.btnManageGenre.Text = "MANAGE GENRES";
+            this.btnManageGenre.UseVisualStyleBackColor = false;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -147,5 +163,6 @@
         private System.Windows.Forms.Label lblSubtitle;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblAdminInfo;
+        private System.Windows.Forms.Button btnManageGenre;
     }
 }

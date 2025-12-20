@@ -56,6 +56,8 @@
             this.moviesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.moviesDBDataSet = new Ui.MoviesDBDataSet();
             this.moviesTableAdapter = new Ui.MoviesDBDataSetTableAdapters.MoviesTableAdapter();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableMovie)).BeginInit();
@@ -111,7 +113,7 @@
             this.panel1.Controls.Add(this.txtReleaseYear);
             this.panel1.Controls.Add(this.txtDescription);
             this.panel1.Controls.Add(this.txtTitle);
-            this.panel1.Location = new System.Drawing.Point(21, 44);
+            this.panel1.Location = new System.Drawing.Point(21, 66);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(405, 520);
             this.panel1.TabIndex = 1;
@@ -212,7 +214,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.tableMovie);
-            this.panel2.Location = new System.Drawing.Point(453, 44);
+            this.panel2.Location = new System.Drawing.Point(453, 66);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(715, 498);
             this.panel2.TabIndex = 5;
@@ -309,11 +311,34 @@
             // 
             this.moviesTableAdapter.ClearBeforeFill = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Manage Movies";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.ForeColor = System.Drawing.Color.SandyBrown;
+            this.btnBack.Image = global::Ui.Properties.Resources.user;
+            this.btnBack.Location = new System.Drawing.Point(1095, 5);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(73, 55);
+            this.btnBack.TabIndex = 12;
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
+            // 
             // ManageMoviesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1180, 629);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "ManageMoviesForm";
@@ -326,6 +351,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.moviesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -357,5 +383,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PosterPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn Rating;
         private System.Windows.Forms.Button btnClone;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnBack;
     }
 }

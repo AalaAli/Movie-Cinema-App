@@ -1,15 +1,11 @@
 ﻿using MovieCinema.Movies;
 using MovieCinema.Repositories;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MovieCinema.ShowTimes;
+using System.Windows.Documents;
+
 namespace Ui
 {
     public partial class ManageShowTimes : Form
@@ -17,13 +13,107 @@ namespace Ui
         private readonly string _connectionString;
         private readonly IRepository<ShowTime> _showTimeRepository;
         private readonly ShowTimeService _showTimeService;
+
         public ManageShowTimes()
         {
             InitializeComponent();
             _connectionString = "server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
             _showTimeRepository = new ShowTimeRepository(_connectionString);
             _showTimeService = new ShowTimeService(_showTimeRepository);
+            ApplyCinemaTheme();
             RefreshShowTimeTable();
+        }
+
+        private void ApplyCinemaTheme()
+        {
+            // Form styling
+            this.BackColor = Color.FromArgb(15, 15, 20);
+            this.ForeColor = Color.White;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Cinema Library - Manage Show Times";
+
+            // Apply styles to panels
+            panel1.BackColor = Color.FromArgb(25, 25, 35);
+            panel2.BackColor = Color.FromArgb(25, 25, 35);
+
+            // Style title label
+            label1.ForeColor = Color.FromArgb(255, 193, 7);
+            label1.Font = new Font("Segoe UI", 18f, FontStyle.Bold);
+            label1.Text = "MANAGE SHOW TIMES";
+
+            // Style buttons
+            StyleButton(btnAdd, Color.FromArgb(40, 167, 69));
+            StyleButton(btnUpdate, Color.FromArgb(255, 193, 7));
+            StyleButton(btnDelete, Color.FromArgb(220, 53, 69));
+            StyleButton(btnBack, Color.FromArgb(15,15,20));
+
+
+            // Style labels in panel1
+            foreach (Control control in panel1.Controls)
+            {
+                if (control is Label label)
+                {
+                    label.ForeColor = Color.FromArgb(180, 180, 200);
+                    label.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+                }
+                else if (control is RichTextBox rtb)
+                {
+                    rtb.BackColor = Color.FromArgb(40, 40, 50);
+                    rtb.ForeColor = Color.White;
+                    rtb.BorderStyle = BorderStyle.FixedSingle;
+                    rtb.Font = new Font("Segoe UI", 10f);
+                }
+                else if (control is ListBox listBox)
+                {
+                    listBox.BackColor = Color.FromArgb(40, 40, 50);
+                    listBox.ForeColor = Color.White;
+                    listBox.Font = new Font("Segoe UI", 10f);
+                    listBox.BorderStyle = BorderStyle.FixedSingle;
+                }
+                else if (control is RadioButton radio)
+                {
+                    radio.ForeColor = Color.FromArgb(180, 180, 200);
+                    radio.Font = new Font("Segoe UI", 9f, FontStyle.Regular);
+                }
+            }
+
+            // Style DataGridView
+            if (tableShowTime != null)
+            {
+                tableShowTime.BackgroundColor = Color.FromArgb(25, 25, 35);
+                tableShowTime.GridColor = Color.FromArgb(60, 60, 70);
+                tableShowTime.BorderStyle = BorderStyle.FixedSingle;
+                tableShowTime.EnableHeadersVisualStyles = false;
+                tableShowTime.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(40, 40, 50);
+                tableShowTime.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                tableShowTime.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
+                tableShowTime.DefaultCellStyle.BackColor = Color.FromArgb(35, 35, 45);
+                tableShowTime.DefaultCellStyle.ForeColor = Color.White;
+                tableShowTime.DefaultCellStyle.Font = new Font("Segoe UI", 9.5f);
+                tableShowTime.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(40, 40, 50);
+                tableShowTime.RowHeadersDefaultCellStyle.ForeColor = Color.White;
+                tableShowTime.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 40);
+            }
+        }
+
+        private void StyleButton(Button button, Color backgroundColor)
+        {
+            button.BackColor = backgroundColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Font = new Font("Segoe UI", 10f, FontStyle.Bold);
+            button.Cursor = Cursors.Hand;
+            button.Padding = new Padding(10, 5, 10, 5);
+
+            // Hover effect
+            button.MouseEnter += (s, e) => button.BackColor = Color.FromArgb(
+                Math.Max(backgroundColor.R - 20, 0),
+                Math.Max(backgroundColor.G - 20, 0),
+                Math.Max(backgroundColor.B - 20, 0));
+            button.MouseLeave += (s, e) => button.BackColor = backgroundColor;
         }
 
         private void ManageShowTimes_Load(object sender, EventArgs e)
@@ -32,7 +122,6 @@ namespace Ui
             this.showTimesTableAdapter1.Fill(this.moviesDBDataSet2.ShowTimes);
             // TODO: This line of code loads data into the 'moviesDBDataSet1.ShowTimes' table. You can move, or remove it, as needed.
             this.showTimesTableAdapter.Fill(this.moviesDBDataSet1.ShowTimes);
-
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -77,7 +166,7 @@ namespace Ui
                 return;
             }
 
-            _showTimeService.AddShowTime(_showTime,showType);
+            _showTimeService.AddShowTime(_showTime, showType);
             ClearForm();
 
             // Refresh
@@ -197,8 +286,8 @@ namespace Ui
                     return;
                 }
 
-                ShowTime updateShowTime = new ShowTime(selectedShowTimeId,movieId,hallID, startTime,endTime, 0, language);
-                _showTimeService.UpdateShowTime(updateShowTime,showType);
+                ShowTime updateShowTime = new ShowTime(selectedShowTimeId, movieId, hallID, startTime, endTime, 0, language);
+                _showTimeService.UpdateShowTime(updateShowTime, showType);
                 RefreshShowTimeTable();
                 ClearForm();
 
@@ -207,7 +296,7 @@ namespace Ui
             }
             else
             {
-                MessageBox.Show("Please select a valid Show Time to update.", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a valid Show Time to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void RefreshShowTimeTable()
@@ -227,6 +316,15 @@ namespace Ui
             btn3D.Checked = false;
             btnMax.Checked = false;
             listLanguage.Text = "";
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AdminForm adminForm = new AdminForm();
+            this.Hide();
+            adminForm.ShowDialog();
+            this.Close();
         }
     }
 }

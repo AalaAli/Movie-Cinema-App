@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MovieCinema.Repositories
 {
@@ -109,6 +110,22 @@ namespace MovieCinema.Repositories
         bool IRepository<Movie>.HasConflict(Movie entity)
         {
             throw new NotImplementedException();
+        }
+        List<GenreComponent> IRepository<Movie>.GetGenresByMovieId(int movieId)
+        {
+            con.Open();
+            Console.WriteLine(con.State.ToString());
+            SqlCommand cmd = new SqlCommand($"select Genres.GenreName from Genres join MovieGenres on MovieGenres.GenreId = Genres.GenreId where MovieId = {movieId}", con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<GenreComponent>  genres = new List<GenreComponent>();
+            while (reader.Read())
+            { 
+                GenreComponent genre = new Genre(0,reader.GetString(0));
+                genres.Add(genre);
+
+            }
+            con.Close();
+            return genres;
         }
 
     }
