@@ -8,6 +8,7 @@ namespace MovieCinema.ShowTimes
 {
     public interface IShowTimeBuilder
     {
+        void SetShowTimeId(int showTimeId);
         void SetMovie(int movieId);
         void SetHall(int hallId);
         void SetStartTime(DateTime startTime);

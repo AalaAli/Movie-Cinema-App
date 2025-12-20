@@ -118,7 +118,7 @@
             // 
             // btnClone
             // 
-            this.btnClone.Location = new System.Drawing.Point(64, 463);
+            this.btnClone.Location = new System.Drawing.Point(39, 463);
             this.btnClone.Name = "btnClone";
             this.btnClone.Size = new System.Drawing.Size(116, 37);
             this.btnClone.TabIndex = 13;
@@ -181,7 +181,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(241, 420);
+            this.btnUpdate.Location = new System.Drawing.Point(254, 420);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(108, 37);
             this.btnUpdate.TabIndex = 6;
@@ -191,7 +191,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(241, 461);
+            this.btnDelete.Location = new System.Drawing.Point(254, 463);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(108, 37);
             this.btnDelete.TabIndex = 5;
@@ -201,7 +201,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(64, 420);
+            this.btnAdd.Location = new System.Drawing.Point(39, 420);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(116, 37);
             this.btnAdd.TabIndex = 4;

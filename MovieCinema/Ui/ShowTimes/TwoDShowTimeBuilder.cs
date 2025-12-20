@@ -14,7 +14,10 @@ namespace MovieCinema.ShowTimes
         {
             _showTime = new ShowTime();
         }
-
+        public void SetShowTimeId(int showTimeId)
+        {
+            _showTime.ShowTimeId = showTimeId;
+        }
         public void SetMovie(int movieId)
         {
             _showTime.MovieId = movieId;

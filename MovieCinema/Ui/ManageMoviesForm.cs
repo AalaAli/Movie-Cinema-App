@@ -23,7 +23,7 @@ namespace Ui
         {
             InitializeComponent();
 
-            // Initialize connection and services once in constructor
+            // Initialize connection and service once in constructor
             _connectionString = "server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
             _movieRepository = new MovieRepository(_connectionString);
             _movieService = new MovieService(_movieRepository);
@@ -152,14 +152,11 @@ namespace Ui
                 posterPath = posterPath.Substring(posterPath.LastIndexOf('\\') + 1);
             }
 
+
             Movie movie = new Movie(0, title, description, releaseYear, duration, posterPath, 0);
             _movieService.Add(movie);
 
-            txtTitle.Text = "";
-            txtReleaseYear.Text = "";
-            txtPosterPath.Text = "";
-            txtDuration.Text = "";
-            txtDescription.Text = "";
+            ClearForm();
 
             // Refresh
             RefreshMovieTable();
@@ -190,8 +187,7 @@ namespace Ui
 
                     ClearForm();
 
-                    MessageBox.Show("Movie deleted successfully!", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Movie deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -230,8 +226,7 @@ namespace Ui
                     return;
                 }
 
-                Movie updatedMovie = new Movie(selectedMovieId, txtTitle.Text,txtDescription.Text,releaseYear,duration,txtPosterPath.Text, existingMovie.GetRating()
-                );
+                Movie updatedMovie = new Movie(selectedMovieId, txtTitle.Text,txtDescription.Text,releaseYear,duration,txtPosterPath.Text, existingMovie.GetRating());
 
                 _movieService.Update(updatedMovie);
 
@@ -240,12 +235,14 @@ namespace Ui
 
                 MessageBox.Show("Movie updated successfully!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearForm();
             }
             else
             {
                 MessageBox.Show("Please select a valid movie to update.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void tableMovie_CellClick(object sender, DataGridViewCellEventArgs e)

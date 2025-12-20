@@ -39,15 +39,17 @@ namespace MovieCinema.Repositories
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand($"DELETE FROM ShowTimes WHERE ShowTime={id}", con);
+            SqlCommand cmd = new SqlCommand($"DELETE FROM ShowTimes WHERE ShowTimeId={id}", con);
             cmd.ExecuteNonQuery();
             con.Close();
             Console.WriteLine($"ShowTime {id} was Deleted Successfully");
         }
         void IRepository<ShowTime>.Update(ShowTime entity)
         {
+            con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand($"UPDATE  ShowTimes SET MovieId= @movie_id,HallId= @hall_id,StartTime= @start_time,EndTime= @end_time,Price= @price,Language= @language WHERE ShowTime={entity.GetShowTimeId()}; ", con);
+            SqlCommand cmd = new SqlCommand("UPDATE  ShowTimes SET MovieId= @movie_id,HallId= @hall_id,StartTime= @start_time,EndTime= @end_time,Price= @price,Language= @language WHERE ShowTimeId=@showTimeId; ", con);
+            cmd.Parameters.AddWithValue("@showTimeId", entity.GetShowTimeId());
             cmd.Parameters.AddWithValue("@movie_id", entity.GetMovieId());
             cmd.Parameters.AddWithValue("@hall_id", entity.GetHallId());
             cmd.Parameters.AddWithValue("@start_time", entity.GetStartTime());
@@ -56,7 +58,7 @@ namespace MovieCinema.Repositories
             cmd.Parameters.AddWithValue("@language", entity.GetLanguage());
             cmd.ExecuteNonQuery();
             con.Close();
-            Console.WriteLine("ShowTime Added Successfully");
+            Console.WriteLine("ShowTime Updated Successfully");
         }
         IEnumerable<ShowTime> IRepository<ShowTime>.GetAll()
         {

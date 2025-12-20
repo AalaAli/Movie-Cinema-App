@@ -145,6 +145,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MoviesDBDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MoviesDBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesDBDataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Movies\Movie.cs" />
     <Compile Include="Movies\MovieSearchContext.cs" />
     <Compile Include="Movies\MovieService.cs" />
@@ -239,6 +244,17 @@
     </None>
     <None Include="MoviesDBDataSet1.xss">
       <DependentUpon>MoviesDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="MoviesDBDataSet2.xsc">
+      <DependentUpon>MoviesDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="MoviesDBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MoviesDBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MoviesDBDataSet2.xss">
+      <DependentUpon>MoviesDBDataSet2.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
