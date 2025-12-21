@@ -117,12 +117,6 @@
     <Compile Include="LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainLibraryFrom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainLibraryFrom.Designer.cs">
-      <DependentUpon>MainLibraryFrom.cs</DependentUpon>
-    </Compile>
     <Compile Include="ManageGenres.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +169,21 @@
     <Compile Include="Movies\SearchByGenreStrategy.cs" />
     <Compile Include="Movies\SearchByTitleStrategy.cs" />
     <Compile Include="Movies\SearchStrategy.cs" />
+    <Compile Include="NewFolder1\Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewFolder1\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewFolder1\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MoviesForm.Designer.cs">
+      <DependentUpon>MoviesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterForm.cs">
@@ -231,6 +240,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManageShowTimes.resx">
       <DependentUpon>ManageShowTimes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewFolder1\Form.resx">
+      <DependentUpon>Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewFolder1\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MoviesForm.resx">
+      <DependentUpon>MoviesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -323,5 +341,6 @@
   <ItemGroup>
     <None Include="Resources\user %281%29.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

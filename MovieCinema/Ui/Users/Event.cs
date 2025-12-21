@@ -10,7 +10,8 @@ namespace MovieCinema.Users
     {
         TicketBooked,
         TicketCancelled,
-        ShowTimeAdded
+        ShowTimeAdded,
+        MovieDownloaded
     }
     public class Event
     {

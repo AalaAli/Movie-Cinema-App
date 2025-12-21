@@ -18,7 +18,6 @@ namespace MovieCinema.Movies
         public bool ValidateMovie(Movie movie)
         {
             if(movie == null) return false;
-            if (movie.GetRating() < 0 || movie.GetRating() > 5) return false;
             return true;
         }
 
@@ -69,6 +68,10 @@ namespace MovieCinema.Movies
             TotalRating+= (TotalRating+rating)/ 2;
 
             _movieRepository.Update(movie);
+        }
+       public IEnumerable<Movie> GettAllMovies()
+        {        
+            return _movieRepository.GetAll();
         }
 
     }

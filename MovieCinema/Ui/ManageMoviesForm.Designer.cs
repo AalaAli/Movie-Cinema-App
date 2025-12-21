@@ -45,6 +45,19 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.RatingLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.DescriptionLabel = new System.Windows.Forms.Label();
+            this.DurationLabel = new System.Windows.Forms.Label();
+            this.ReleaseYearLabel = new System.Windows.Forms.Label();
+            this.TitleLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TitleTxt = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.MoviePoster = new System.Windows.Forms.PictureBox();
             this.tableMovie = new System.Windows.Forms.DataGridView();
             this.MovieId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +73,7 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MoviePoster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableMovie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet)).BeginInit();
@@ -115,12 +129,12 @@
             this.panel1.Controls.Add(this.txtTitle);
             this.panel1.Location = new System.Drawing.Point(21, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(405, 520);
+            this.panel1.Size = new System.Drawing.Size(405, 538);
             this.panel1.TabIndex = 1;
             // 
             // btnClone
             // 
-            this.btnClone.Location = new System.Drawing.Point(39, 463);
+            this.btnClone.Location = new System.Drawing.Point(39, 480);
             this.btnClone.Name = "btnClone";
             this.btnClone.Size = new System.Drawing.Size(110, 40);
             this.btnClone.TabIndex = 13;
@@ -183,9 +197,9 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(254, 420);
+            this.btnUpdate.Location = new System.Drawing.Point(252, 420);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 40);
+            this.btnUpdate.Size = new System.Drawing.Size(110, 40);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -193,9 +207,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(254, 463);
+            this.btnDelete.Location = new System.Drawing.Point(252, 480);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(100, 40);
+            this.btnDelete.Size = new System.Drawing.Size(110, 40);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -205,7 +219,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(39, 420);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 40);
+            this.btnAdd.Size = new System.Drawing.Size(110, 40);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -213,11 +227,138 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.RatingLabel);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.DescriptionLabel);
+            this.panel2.Controls.Add(this.DurationLabel);
+            this.panel2.Controls.Add(this.ReleaseYearLabel);
+            this.panel2.Controls.Add(this.TitleLabel);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.TitleTxt);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.MoviePoster);
             this.panel2.Controls.Add(this.tableMovie);
             this.panel2.Location = new System.Drawing.Point(453, 66);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(715, 498);
+            this.panel2.Size = new System.Drawing.Size(715, 538);
             this.panel2.TabIndex = 5;
+            // 
+            // RatingLabel
+            // 
+            this.RatingLabel.AutoSize = true;
+            this.RatingLabel.Location = new System.Drawing.Point(217, 454);
+            this.RatingLabel.Name = "RatingLabel";
+            this.RatingLabel.Size = new System.Drawing.Size(32, 17);
+            this.RatingLabel.TabIndex = 16;
+            this.RatingLabel.Text = "      ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(168, 454);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 17);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "Rating:";
+            // 
+            // DescriptionLabel
+            // 
+            this.DescriptionLabel.AutoSize = true;
+            this.DescriptionLabel.Location = new System.Drawing.Point(255, 492);
+            this.DescriptionLabel.Name = "DescriptionLabel";
+            this.DescriptionLabel.Size = new System.Drawing.Size(24, 17);
+            this.DescriptionLabel.TabIndex = 14;
+            this.DescriptionLabel.Text = "    ";
+            // 
+            // DurationLabel
+            // 
+            this.DurationLabel.AutoSize = true;
+            this.DurationLabel.Location = new System.Drawing.Point(230, 420);
+            this.DurationLabel.Name = "DurationLabel";
+            this.DurationLabel.Size = new System.Drawing.Size(32, 17);
+            this.DurationLabel.TabIndex = 13;
+            this.DurationLabel.Text = "      ";
+            // 
+            // ReleaseYearLabel
+            // 
+            this.ReleaseYearLabel.AutoSize = true;
+            this.ReleaseYearLabel.Location = new System.Drawing.Point(255, 387);
+            this.ReleaseYearLabel.Name = "ReleaseYearLabel";
+            this.ReleaseYearLabel.Size = new System.Drawing.Size(28, 17);
+            this.ReleaseYearLabel.TabIndex = 12;
+            this.ReleaseYearLabel.Text = "     ";
+            // 
+            // TitleLabel
+            // 
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Location = new System.Drawing.Point(200, 354);
+            this.TitleLabel.Name = "TitleLabel";
+            this.TitleLabel.Size = new System.Drawing.Size(24, 17);
+            this.TitleLabel.TabIndex = 11;
+            this.TitleLabel.Text = "    ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(273, 387);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 17);
+            this.label11.TabIndex = 10;
+            // 
+            // TitleTxt
+            // 
+            this.TitleTxt.AutoSize = true;
+            this.TitleTxt.Location = new System.Drawing.Point(230, 354);
+            this.TitleTxt.Name = "TitleTxt";
+            this.TitleTxt.Size = new System.Drawing.Size(0, 17);
+            this.TitleTxt.TabIndex = 9;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(168, 492);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(81, 17);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Description:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(168, 420);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 17);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Duration:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(168, 387);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 17);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Release Year:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(168, 354);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Title:";
+            // 
+            // MoviePoster
+            // 
+            this.MoviePoster.Location = new System.Drawing.Point(25, 354);
+            this.MoviePoster.Name = "MoviePoster";
+            this.MoviePoster.Size = new System.Drawing.Size(128, 166);
+            this.MoviePoster.TabIndex = 4;
+            this.MoviePoster.TabStop = false;
             // 
             // tableMovie
             // 
@@ -232,11 +373,11 @@
             this.PosterPath,
             this.Rating});
             this.tableMovie.DataSource = this.moviesBindingSource;
-            this.tableMovie.Location = new System.Drawing.Point(19, 46);
+            this.tableMovie.Location = new System.Drawing.Point(16, 16);
             this.tableMovie.Name = "tableMovie";
             this.tableMovie.RowHeadersWidth = 51;
             this.tableMovie.RowTemplate.Height = 26;
-            this.tableMovie.Size = new System.Drawing.Size(670, 379);
+            this.tableMovie.Size = new System.Drawing.Size(696, 316);
             this.tableMovie.TabIndex = 3;
             this.tableMovie.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableMovie_CellClick);
             // 
@@ -347,6 +488,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MoviePoster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableMovie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moviesDBDataSet)).EndInit();
@@ -385,5 +528,18 @@
         private System.Windows.Forms.Button btnClone;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox MoviePoster;
+        private System.Windows.Forms.Label DescriptionLabel;
+        private System.Windows.Forms.Label DurationLabel;
+        private System.Windows.Forms.Label ReleaseYearLabel;
+        private System.Windows.Forms.Label TitleLabel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label TitleTxt;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label RatingLabel;
+        private System.Windows.Forms.Label label12;
     }
 }

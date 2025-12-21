@@ -152,13 +152,7 @@ namespace Ui
             }
 
             string posterPath = txtPosterPath.Text;
-            // Remove the substring operation if it's causing issues, or fix it
-            if (!string.IsNullOrEmpty(posterPath) && posterPath.Contains('\\'))
-            {
-                posterPath = posterPath.Substring(posterPath.LastIndexOf('\\') + 1);
-            }
-
-
+  
             Movie movie = new Movie(0, title, description, releaseYear, duration, posterPath, 0);
             _movieService.Add(movie);
 
@@ -264,6 +258,21 @@ namespace Ui
                     txtReleaseYear.Text = row.Cells["ReleaseYear"].Value?.ToString() ?? "";
                     txtDuration.Text = row.Cells["Duration"].Value?.ToString() ?? "";
                     txtPosterPath.Text = row.Cells["PosterPath"].Value?.ToString() ?? "";
+
+                    TitleLabel.Text= row.Cells["Title"].Value?.ToString() ?? "";
+                    ReleaseYearLabel.Text= row.Cells["ReleaseYear"].Value?.ToString() ?? "";
+                    DurationLabel.Text= row.Cells["Duration"].Value?.ToString() ?? "";
+                    DescriptionLabel.Text= row.Cells["Description"].Value?.ToString() ?? "";
+                    RatingLabel.Text= row.Cells["Rating"].Value?.ToString() ?? "";
+                    MoviePoster.SizeMode = PictureBoxSizeMode.StretchImage;
+                    string path = "D:\\DesignPatternsProject\\" + row.Cells["PosterPath"].Value?.ToString(); 
+                    
+                    if (row.Cells["PosterPath"].Value.ToString().Length<=0)
+                        MoviePoster.Load("D:\\DesignPatternsProject\\default.jpg");
+                    
+                    else
+                        MoviePoster.Load(path);
+
                 }
             }
         }
@@ -322,6 +331,6 @@ namespace Ui
             this.Close();
         }
 
-
+ 
     }
 }

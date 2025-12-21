@@ -124,7 +124,7 @@ namespace Ui
                 }
                 else
                 {
-                    MainLibraryFrom mainForm = new MainLibraryFrom();
+                    MoviesForm mainForm = new MoviesForm();
                     mainForm.ShowDialog();
                 }
                 this.Close();
