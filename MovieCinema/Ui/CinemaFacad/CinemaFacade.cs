@@ -64,11 +64,7 @@ namespace MovieCinema.CinemaFacad
 
           //  ticketRepository.Add(ticket);
 
-            NotifyObservers(new Event(
-                EventType.TicketBooked,
-                $"Ticket booked for seat {seatId}",
-                userId
-            ));
+            NotifyObservers(new Event(EventType.TicketBooked,$"Ticket booked for seat {seatId}",userId));
         }
 
         public void CancelTicket(int ticketId)
@@ -80,10 +76,7 @@ namespace MovieCinema.CinemaFacad
             seatRepository.Update(seat);
             ticketRepository.Delete(ticketId);
 
-            NotifyObservers(new Event(
-                EventType.TicketCancelled,
-                $"Ticket {ticketId} cancelled",
-                ticket.GetUserId()
+            NotifyObservers(new Event(EventType.TicketCancelled,$"Ticket {ticketId} cancelled",ticket.GetUserId()
             )); 
         }
 

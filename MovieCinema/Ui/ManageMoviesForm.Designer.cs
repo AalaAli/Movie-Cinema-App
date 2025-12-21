@@ -122,7 +122,7 @@
             // 
             this.btnClone.Location = new System.Drawing.Point(39, 463);
             this.btnClone.Name = "btnClone";
-            this.btnClone.Size = new System.Drawing.Size(116, 37);
+            this.btnClone.Size = new System.Drawing.Size(110, 40);
             this.btnClone.TabIndex = 13;
             this.btnClone.Text = "Clone";
             this.btnClone.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             // 
             this.btnUpdate.Location = new System.Drawing.Point(254, 420);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(108, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(100, 40);
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@
             // 
             this.btnDelete.Location = new System.Drawing.Point(254, 463);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(108, 37);
+            this.btnDelete.Size = new System.Drawing.Size(100, 40);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -205,7 +205,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(39, 420);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(116, 37);
+            this.btnAdd.Size = new System.Drawing.Size(100, 40);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;

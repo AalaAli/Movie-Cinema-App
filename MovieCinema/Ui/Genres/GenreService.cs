@@ -16,7 +16,7 @@ namespace MovieCinema.Genres
         {
             _repository = repository;
         }
-        public GenreComponent GetOrCreate(string genreName,int parentId)
+ /*       public GenreComponent GetOrCreate(string genreName,int parentId)
         {
             var genre = _repository.GetByName(genreName);
 
@@ -27,6 +27,10 @@ namespace MovieCinema.Genres
             }
 
             return genre;
+        }*/
+        public GenreComponent GetGenreById(int genreId)
+        {
+            return _repository.GetById(genreId);
         }
         public IEnumerable<GenreComponent> GetAllGenres()
         {

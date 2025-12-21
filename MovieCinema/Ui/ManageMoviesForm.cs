@@ -239,8 +239,7 @@ namespace Ui
                 // Refresh 
                 RefreshMovieTable();
 
-                MessageBox.Show("Movie updated successfully!", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Movie updated successfully!", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearForm();
             }
             else
@@ -322,5 +321,7 @@ namespace Ui
             adminForm.ShowDialog();
             this.Close();
         }
+
+
     }
 }
