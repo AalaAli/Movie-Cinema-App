@@ -8,7 +8,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MovieCinema.Movies;
+using MovieCinema.Repositories;
+using MovieCinema.Genres;
 namespace Ui
 {
     public partial class MoviesForm : Form
@@ -43,12 +46,27 @@ namespace Ui
             movies = movieService.GettAllMovies();
 
             InitializeComponent();
-            CreateSearchBox();
-            CreateProfilePic();
-            DisplayMovies(movies);
-        }
 
-        
+            CreateSearchBox(); 
+
+            CreateProfilePic();
+
+            LoadGenreMovies(movies);
+
+            DisplayMovies(movies);
+
+            
+
+        }
+        private void LoadGenreMovies(IEnumerable<Movie>movies)
+        {
+            IEnumerable<GenreComponent> genres=new List<GenreComponent>();
+            foreach (Movie movie in movies)
+            {
+                genres= movieService.GetGenresByMovieId(movie.GetMovieId());
+                movie.AddGenres(genres);
+            }
+        }
         private void CreateSearchBox()
         {
             txtSearch = new System.Windows.Forms.TextBox();
@@ -69,7 +87,7 @@ namespace Ui
             flowLayoutMovies.Controls.Clear();
             foreach (var movie in moviesList)
             {
-                AddMovieCard(movie);
+                    AddMovieCard(movie);
             }
         }
 
@@ -86,7 +104,38 @@ namespace Ui
             catch { }
 
             Label lblTitle = new Label { Text = movie.Title, ForeColor = Color.White, Font = new Font("Segoe UI", 11, FontStyle.Bold), Location = new Point(10, 300), AutoSize = true };
+           string genreString="";
+            foreach (Movie m in movies)
+            {
+                genreString = "";
+                if (m.GetGenres() != null)
+                {
+                    foreach (var genre in m.GetGenres())
+                    { 
+                        genreString += genre.GetGenreName() + ", ";
+                    }
+                    Label lblGenres = new Label { Text = genreString, ForeColor = Color.White, Font = new Font("Segoe UI", 11, FontStyle.Bold), Location = new Point(10, 310), AutoSize = true };
+                }
+            }
 
+            int fullStars = (int)Math.Round(movie.Rating / 2);
+
+            
+            int emptyStars = 5 - fullStars;
+
+            
+            string starsText = new string('★', fullStars) + new string('☆', emptyStars);
+
+            
+            Label lblStars = new Label
+            {
+                Text = $"({movie.Rating}) " + starsText,
+                ForeColor = Color.Gold,
+                Location = new Point(10, 335),
+                AutoSize = true
+            };
+
+           
             System.Windows.Forms.Button btn = new System.Windows.Forms.Button
             {
                 Text = "Watch Now",
@@ -111,8 +160,18 @@ namespace Ui
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (txtSearch == null) return;
-            string query = txtSearch.Text.ToLower().Trim();
+          
+            System.Windows.Forms.TextBox searchBox = sender as System.Windows.Forms.TextBox;
+
+            if (searchBox == null) return;
+
+            string query = searchBox.Text.ToLower().Trim();
+
+            
+            var results = movies.Where(m =>m.Title.ToLower().StartsWith(query) ||
+                m.Actors.Any(a => a.ActorName.ToLower().StartsWith(query)) ||
+                m.Genres.Any(g => g.GetGenreName().ToLower().StartsWith(query))
+            ).ToList();
 
             var results = movies.Where(m => m.Title.ToLower().Contains(query)).ToList();
             DisplayMovies(results);

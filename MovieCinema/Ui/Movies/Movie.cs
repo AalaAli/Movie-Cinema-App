@@ -18,7 +18,7 @@ namespace MovieCinema.Movies
         internal int Duration; // in minutes
         internal string PosterPath;
         internal decimal Rating;
-        internal List<GenreComponent> Genres;
+        internal IEnumerable<GenreComponent> Genres;
         internal List<Actor> Actors;
         public Movie() { }
         public  Movie(int MvId, string Tit, string Desc,int releasYear, int Dur, string PstPth, decimal Rt)
@@ -34,19 +34,11 @@ namespace MovieCinema.Movies
             Actors = new List<Actor>();
 
         }
-        public void AddGenre(GenreComponent Genre)
+        public void AddGenres(IEnumerable<GenreComponent> genres)
         {
-            if(Genre.IsLeaf())
-                Genres.Add(Genre);
+                this.Genres=genres;
         }
-        public void AddActor(Actor Actor)
-        {
-            Actors.Add(Actor);
-        }
-        public void RemoveGenre(Genre Genre)
-        {
-            Genres.Remove(Genre);
-        }
+
         public int GetMovieId()=> MovieId;
         public string GetTitle() => Title;
         public string GetDescription() => Description;
@@ -54,7 +46,7 @@ namespace MovieCinema.Movies
         public int GetDuration() => Duration;
         public string GetPosterPath()=> PosterPath;
         public decimal GetRating() => Rating;
-        public List<GenreComponent> GetGenres() => Genres; 
+        public IEnumerable<GenreComponent> GetGenres() => Genres; 
         public List<Actor> GetActors() => Actors;
 
         public bool HasGenre(string GenreName)

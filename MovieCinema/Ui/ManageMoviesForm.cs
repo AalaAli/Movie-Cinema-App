@@ -331,6 +331,9 @@ namespace Ui
             this.Close();
         }
 
- 
+        private void tableMovie_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

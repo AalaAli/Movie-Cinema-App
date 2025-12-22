@@ -115,14 +115,18 @@ namespace MovieCinema.Repositories
         {
             con.Open();
             Console.WriteLine(con.State.ToString());
-            SqlCommand cmd = new SqlCommand($"select Genres.GenreName from Genres join MovieGenres on MovieGenres.GenreId = Genres.GenreId where MovieId = {movieId}", con);
+            SqlCommand cmd = new SqlCommand($"select Genres.GenreId, Genres.GenreName, Genres.ParentId from Genres join MovieGenres on MovieGenres.GenreId = Genres.GenreId where MovieId = {movieId}", con);
             SqlDataReader reader = cmd.ExecuteReader();
             List<GenreComponent>  genres = new List<GenreComponent>();
+            GenreComponent genre;
             while (reader.Read())
-            { 
-                GenreComponent genre = new Genre(reader.GetInt32(0),reader.GetString(1), reader.GetInt32(2));
-                genres.Add(genre);
+            {
+                if(reader.GetValue(2).GetType()==typeof(DBNull))
+                     genre = new Genre(reader.GetInt32(0), reader.GetString(1), null);
+                else
+                    genre = new Genre(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2));
 
+                genres.Add(genre);
             }
             con.Close();
             return genres;

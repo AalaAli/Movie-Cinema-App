@@ -380,6 +380,7 @@
             this.tableMovie.Size = new System.Drawing.Size(696, 316);
             this.tableMovie.TabIndex = 3;
             this.tableMovie.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableMovie_CellClick);
+            this.tableMovie.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableMovie_CellContentClick);
             // 
             // MovieId
             // 
