@@ -73,6 +73,9 @@ namespace MovieCinema.Movies
         {        
             return _movieRepository.GetAll();
         }
-
+        public IEnumerable<GenreComponent> GetGenresByMovieId(int movieId)
+        {
+            return _movieRepository.GetGenresByMovieId(movieId);
+        }
     }
 }

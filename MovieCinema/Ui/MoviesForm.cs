@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using MovieCinema.Movies;
 using MovieCinema.Repositories;
+using MovieCinema.Genres;
 namespace Ui
 {
     public partial class MoviesForm : Form
@@ -31,44 +32,26 @@ namespace Ui
             movies = movieService.GettAllMovies();
 
             InitializeComponent();
+
             CreateSearchBox(); 
+
             CreateProfilePic();
-            LoadMockData();
+
+            LoadGenreMovies(movies);
+
             DisplayMovies(movies);
+
             
 
         }
-
-        private void LoadMockData()
+        private void LoadGenreMovies(IEnumerable<Movie>movies)
         {
-            
-            
-
-     /*       var m1 = new Movie(1, "Inception", "A skilled thief is offered a chance to have his criminal record erased as payment for the implantation of another person's idea into their subconscious. He must lead a team into a dangerous multi-level dream world to succeed.", 2010, "A2.jpg", 9.2m);
-            m1.Actors.AddRange(new[] { "Leonardo DiCaprio", "Tom Hardy" });
-            m1.Genres.Add("Sci-Fi");
-
-            var m2 = new Movie(2, "Joker", "\"In Gotham City, mentally troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego.\",", 2019, "A3.jpg", 8.8m);
-            m2.Actors.Add("Joaquin Phoenix");
-            m2.Genres.Add("Drama");
-            var m3 = new Movie(3, "Interstellar", "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice and save the city from ruin.\"", 2014, "A4.jpg", 8.7m);
-            m3.Actors.Add("Matthew McConaughey");
-            var m4 = new Movie(5, "The Shawshank Redemption", "\"A prominent banker is sentenced to life in prison for a crime he didn't commit. Over two decades, he forms an unlikely friendship with a fellow inmate and uses his financial skills to gain protection, all while secretly planning an ingenious escape to find his freedom and redemption.\"", 1994, "A5.jpg", 9.3m);
-            m4.Actors.AddRange(new[] { "Morgan Freeman", "Tim Robbins" });
-            m4.Genres.Add("Drama");
-            m3.Genres.AddRange(new[] { "Sci-Fi", "Drama" });
-            var m5 = new Movie(6, "Signs", "A former priest living on a remote farm discovers mysterious and massive crop circles carved into his fields. As strange events escalate across the globe, he must protect his family from a terrifying alien invasion while struggling to regain his lost faith in a world under siege.\"", 2002, "A6.jpg", 6.8m);
-            m5.Actors.AddRange(new[] { "Mel Gibson", "Joaquin Phoenix" }); 
-            m5.Genres.Add("Horror"); 
-            m5.Genres.Add("Mystery");
-            var m6 = new Movie(9, "The Revenant", "While exploring the uncharted wilderness in the 1820s, a legendary frontiersman is brutally attacked by a bear and left for dead by his own hunting team. Driven by sheer willpower and the love of his family, he must survive freezing temperatures and hostile tribes to find the man who betrayed him.", 2015, "a7.jpg", 8.0m);
-            m6.Actors.AddRange(new[] { "Leonardo DiCaprio", "Tom Hardy" }); 
-            m6.Genres.Add("Adventure");
-            m6.Genres.Add("Drama");
-
-            _allMovies.Add(m6);
-            _allMovies.Clear();
-            _allMovies.AddRange(new[] { m1, m2,m4,m3,m5,m6 });*/
+            IEnumerable<GenreComponent> genres=new List<GenreComponent>();
+            foreach (Movie movie in movies)
+            {
+                genres= movieService.GetGenresByMovieId(movie.GetMovieId());
+                movie.AddGenres(genres);
+            }
         }
         private void CreateSearchBox()
         {
@@ -90,7 +73,7 @@ namespace Ui
             flowLayoutMovies.Controls.Clear();
             foreach (var movie in moviesList)
             {
-                AddMovieCard(movie);
+                    AddMovieCard(movie);
             }
         }
 
@@ -107,8 +90,20 @@ namespace Ui
             catch { }
 
             Label lblTitle = new Label { Text = movie.Title, ForeColor = Color.White, Font = new Font("Segoe UI", 11, FontStyle.Bold), Location = new Point(10, 300), AutoSize = true };
+           string genreString="";
+            foreach (Movie m in movies)
+            {
+                genreString = "";
+                if (m.GetGenres() != null)
+                {
+                    foreach (var genre in m.GetGenres())
+                    { 
+                        genreString += genre.GetGenreName() + ", ";
+                    }
+                    Label lblGenres = new Label { Text = genreString, ForeColor = Color.White, Font = new Font("Segoe UI", 11, FontStyle.Bold), Location = new Point(10, 310), AutoSize = true };
+                }
+            }
 
-            
             int fullStars = (int)Math.Round(movie.Rating / 2);
 
             
@@ -162,8 +157,8 @@ namespace Ui
 
             
             var results = movies.Where(m =>m.Title.ToLower().StartsWith(query) ||
-                m.Actors.Any(a => a.ActorName.ToLower().Contains(query)) ||
-                m.Genres.Any(g => g.GetGenreName().ToLower().Contains(query))
+                m.Actors.Any(a => a.ActorName.ToLower().StartsWith(query)) ||
+                m.Genres.Any(g => g.GetGenreName().ToLower().StartsWith(query))
             ).ToList();
 
             DisplayMovies(results);
