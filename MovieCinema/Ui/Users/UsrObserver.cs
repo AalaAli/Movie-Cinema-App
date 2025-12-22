@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms; 
 
 namespace MovieCinema.Users
 {
@@ -19,14 +16,23 @@ namespace MovieCinema.Users
 
         public void Update(Event notification)
         {
-
             if (notification.UserId != UserId)
                 return;
 
-            if (notification.Type == EventType.TicketBooked ||
-                notification.Type == EventType.TicketCancelled)
+            if (notification.Type == EventType.MovieDownloaded)
             {
-                Console.WriteLine($"User {Name}: {notification.Message}");
+                var result = MessageBox.Show($"{notification.Message}\n\nDo you want to cancel the booking for this movie?",
+                    "Download Manager", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    MessageBox.Show("Processing Cancellation...");
+                }
+            }
+            else if (notification.Type == EventType.TicketBooked || notification.Type == EventType.TicketCancelled)
+            {
+                
+                MessageBox.Show($"User {Name}: {notification.Message}", "Notification", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

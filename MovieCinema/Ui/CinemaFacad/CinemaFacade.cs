@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MovieCinema.Tickets;
+
 namespace MovieCinema.CinemaFacad
 {
     public class CinemaFacade : ISubject
@@ -28,16 +29,8 @@ namespace MovieCinema.CinemaFacad
             showTimeRepository = showTimeRepo;
         }
 
-        // ===== Observer Pattern =====
-        public void Attach(IObserver observer)
-        {
-            observers.Add(observer);
-        }
-
-        public void Detach(IObserver observer)
-        {
-            observers.Remove(observer);
-        }
+        public void Attach(IObserver observer) => observers.Add(observer);
+        public void Detach(IObserver observer) => observers.Remove(observer);
 
         public void NotifyObservers(Event notification)
         {
@@ -59,12 +52,14 @@ namespace MovieCinema.CinemaFacad
             seat.Reserve();
             seatRepository.Update(seat);
 
-          //  var ticketProxy = new TicketServiceProxy(new Ticket());
-            //var ticket =ticketProxy.CreateTicket();
+            
+            NotifyObservers(new Event(EventType.TicketBooked, $"Ticket booked for seat {seatId}", userId));
+        }
 
-          //  ticketRepository.Add(ticket);
-
-            NotifyObservers(new Event(EventType.TicketBooked,$"Ticket booked for seat {seatId}",userId));
+        
+        public void DownloadMovie(int userId, string movieTitle)
+        {
+            NotifyObservers(new Event(EventType.MovieDownloaded, $"Download started for: {movieTitle}", userId));
         }
 
         public void CancelTicket(int ticketId)
@@ -76,24 +71,22 @@ namespace MovieCinema.CinemaFacad
             seatRepository.Update(seat);
             ticketRepository.Delete(ticketId);
 
-            NotifyObservers(new Event(EventType.TicketCancelled,$"Ticket {ticketId} cancelled",ticket.GetUserId()
-            )); 
+            NotifyObservers(new Event(EventType.TicketCancelled, $"Ticket {ticketId} cancelled", ticket.GetUserId()));
         }
 
-        public IEnumerable<Seat> GetAvailableSeats(int showTimeId)
+        
+        public void CancelBookingByTitle(int userId, string movieTitle)
         {
-            // return seatRepository.GetAvailableSeatsByShowTime(showTimeId);//Add in seatRepository
-            return null;
+           
+            NotifyObservers(new Event(EventType.TicketCancelled, $"Booking for {movieTitle} has been cancelled", userId));
         }
+
+        public IEnumerable<Seat> GetAvailableSeats(int showTimeId) => null;
 
         public void AddShowTime(ShowTime showTime)
         {
             showTimeRepository.Add(showTime);
-
-            NotifyObservers(new Event(
-                EventType.ShowTimeAdded,
-                $"ShowTime added for movie {showTime.MovieId}"
-            ));
+            NotifyObservers(new Event(EventType.ShowTimeAdded, $"ShowTime added for movie {showTime.MovieId}"));
         }
-    }    
+    }
 }

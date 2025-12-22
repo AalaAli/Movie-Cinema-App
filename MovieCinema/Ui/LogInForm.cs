@@ -104,9 +104,12 @@ namespace Ui
             string ConnectionString = "server=DESKTOP-V3MP8OJ\\SQL1919;database=MoviesDB;integrated security=True";
             IRepository<User> userRepo = new UserRepository(ConnectionString);
             UserService uService = new UserService(userRepo);
+
             string email = txtEmail.Text;
             string password = txtPassword.Text;
+
             User user = uService.Login(email, password);
+
             if (user == null)
             {
                 MessageBox.Show("Invalid Credentials", "Login Failed",
@@ -116,7 +119,9 @@ namespace Ui
             {
                 MessageBox.Show($"Welcome {user.GetUserName()}!", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Hide();
+
                 if (user.GetIsAdmin() == true)
                 {
                     AdminForm adminForm = new AdminForm();
@@ -124,13 +129,15 @@ namespace Ui
                 }
                 else
                 {
-                    MoviesForm mainForm = new MoviesForm();
+                    // --- التعديل هنا ---
+                   
+                    MoviesForm mainForm = new MoviesForm(user);
                     mainForm.ShowDialog();
                 }
+
                 this.Close();
             }
         }
-
         private void linkRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
@@ -140,6 +147,11 @@ namespace Ui
         }
 
         private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void LogInForm_Load(object sender, EventArgs e)
         {
 
         }
